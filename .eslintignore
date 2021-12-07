@@ -1,0 +1,6 @@
+src/assets
+config
+public
+dist
+scripts
+vite.config.js
