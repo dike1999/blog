@@ -1,8 +1,9 @@
 import React from 'react';
+import MyInfo from './components/MyInfo';
 
 const App = () => (
   <div className='app'>
-    <h1>Hello World</h1>
+    <MyInfo />
   </div>
 );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Rate, Button } from 'antd';
+import { Divider, Rate } from 'antd';
 import { QqOutlined, MailFilled } from '@ant-design/icons';
 
 import Href from '@/components/Href';

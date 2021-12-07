@@ -5,9 +5,9 @@ body {
   font-family: 'Chinese Quote', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
-  line-height: 2;
-  color: #555;
+    'Segoe UI Symbol' !important;
+  line-height: 2 !important;
+  color: #555 !important;
 }
 
 ol,
