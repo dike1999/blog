@@ -1,0 +1,84 @@
+/* stylelint-disable selector-class-pattern */
+#discuss {
+  font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  .discuss-header {
+    padding: 20px 0;
+    color: #555;
+    font-size: 16px;
+
+    .discuss-count {
+      margin-right: 5px;
+      border-bottom: 1px dotted #6190e8;
+      color: #6190e8;
+    }
+
+    .hr {
+      margin: 10px 0 0;
+    }
+
+    .discuss-user {
+      float: right;
+      cursor: pointer;
+    }
+  }
+
+  .controls {
+    float: right;
+
+    .controls-tip-icon {
+      margin-right: 4px;
+      color: #6190e8;
+    }
+
+    .controls-tip {
+      margin-right: 20px;
+      color: #6190e8;
+    }
+  }
+
+  .ant-popover-open {
+    .icon-delete {
+      display: inline-block;
+    }
+  }
+
+  .ant-comment-content:hover {
+    .icon-delete {
+      display: inline-block;
+    }
+  }
+
+  .icon-delete.active {
+    display: inline-block;
+  }
+
+  .ant-comment-inner {
+    padding: 6px 0;
+  }
+
+  .ant-comment-actions {
+    margin-top: 0;
+  }
+
+  .ant-comment-content-detail p {
+    margin-bottom: 0;
+    white-space: inherit;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .controls {
+    width: 100%;
+    margin-top: -10px;
+
+    .disscus-btn {
+      width: 100%;
+    }
+
+    .controls-tip,
+    .controls-tip-icon {
+      display: none;
+    }
+  }
+}

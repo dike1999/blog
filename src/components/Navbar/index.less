@@ -1,0 +1,36 @@
+/* stylelint-disable selector-class-pattern */
+.header-nav {
+  float: right;
+  border: 0;
+  font-variant: tabular-nums;
+  font-size: 14px;
+}
+
+.header-nav.ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.header-nav > .ant-menu-item {
+  text-align: center;
+}
+
+.header-nav.ant-menu-horizontal > .ant-menu-item {
+  min-width: 72px;
+  height: 48px;
+  border-top: 2px solid transparent;
+  line-height: 48px;
+}
+
+.header-nav.ant-menu-horizontal > .ant-menu-item:hover {
+  border-top: 2px solid #1890ff;
+  border-bottom: 2px solid transparent;
+}
+
+.header-nav.ant-menu-horizontal > .ant-menu-item-selected {
+  border-top: 2px solid #1890ff;
+  border-bottom: 2px solid transparent;
+}
+
+.header-nav.ant-menu-horizontal > .ant-menu-item-selected a {
+  color: #1890ff;
+}
