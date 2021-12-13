@@ -1,0 +1,54 @@
+/* stylelint-disable selector-class-pattern */
+.app-container {
+  .app-wrapper {
+    position: relative;
+    padding: 40px 0 0;
+    background: #fff;
+
+    .app-main {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
+      height: calc(100vh - 48px - 40px);
+      padding-right: 10px;
+      padding-left: 20px;
+    }
+  }
+
+  .app-pagination {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .ant-divider-inner-text {
+    overflow: auto;
+    max-width: calc(100vw - 77px);
+    text-overflow: ellipsis;
+  }
+
+  .app-container .app-wrapper {
+    padding-top: 0;
+
+    .app-home,
+    .app-about,
+    .app-article,
+    .app-tags,
+    .app-archives {
+      padding-top: 20px;
+      padding-bottom: 0;
+    }
+
+    .app-pagination {
+      float: initial;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .app-container .app-wrapper .app-main {
+    padding: 0 20px;
+  }
+}

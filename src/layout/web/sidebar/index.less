@@ -1,0 +1,91 @@
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable selector-class-pattern */
+.app-sidebar {
+  overflow-y: auto;
+  height: calc(100vh - 48px - 40px);
+  border-right: 1px solid #ebedf0;
+  color: rgba(0, 0, 0, 65%);
+  text-align: center;
+
+  .sider-avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 1.5em;
+  }
+
+  .sub-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: rgba(0, 0, 0, 65%);
+    font-size: 13px;
+  }
+
+  .home-pages {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    line-height: 24px;
+
+    li {
+      padding: 0 8px;
+      cursor: pointer;
+
+      a {
+        vertical-align: top;
+        padding-left: 5px;
+        color: inherit;
+      }
+    }
+
+    li:hover {
+      border-radius: 4px;
+      background: #eee;
+    }
+  }
+
+  .article-list {
+    text-align: left;
+
+    li {
+      padding: 0 20px;
+
+      a {
+        display: block;
+        overflow: hidden;
+        color: #8590a6;
+        font-size: 14px;
+        line-height: 32px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      &:hover {
+        background: #f0f2f5;
+
+        a {
+          color: #40a9ff;
+        }
+      }
+    }
+  }
+
+  .tag-list {
+    overflow: hidden;
+
+    a {
+      color: inherit;
+    }
+
+    .ant-tag {
+      margin-bottom: 6px;
+    }
+  }
+}
