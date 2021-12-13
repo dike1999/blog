@@ -24,7 +24,7 @@ const responsiveRight = {
 };
 
 const WebHeader = () => (
-  <Header className='app-header' style={{ height: '48px' }}>
+  <Header className='header' style={{ height: '48px' }}>
     <Row>
       <Col {...responsiveLeft}>
         <Left />

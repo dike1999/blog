@@ -21,10 +21,10 @@ export const translateMarkdown = (plainText, isGuardXss = false) =>
     breaks: true,
     smartLists: true,
     smartypants: true,
-    highlight(code) {
-      // eslint-disable-next-line no-undef
-      return hljs.highlightAuto(code).value;
-    },
+    // highlight(code) {
+    //   // eslint-disable-next-line no-undef
+    //   return hljs.highlightAuto(code).value;
+    // },
   });
 
 // 获取 url query 参数

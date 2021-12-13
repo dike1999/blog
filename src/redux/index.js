@@ -17,14 +17,14 @@ if (process.env.NODE_ENV === 'production') {
 const configureStore = (initialState = {}) => {
   const store = createStore(rootReducer, initialState, storeEnhancers);
 
-  if (module.hot && process.env.NODE_ENV !== 'production') {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./rootReducers', () => {
-      console.log('replacing reducer...');
-      const nextRootReducer = require('./rootReducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+  // if (module.hot && process.env.NODE_ENV !== 'production') {
+  //   // Enable Webpack hot module replacement for reducers
+  //   module.hot.accept('./rootReducers', () => {
+  //     console.log('replacing reducer...');
+  //     const nextRootReducer = require('./rootReducers').default;
+  //     store.replaceReducer(nextRootReducer);
+  //   });
+  // }
 
   return store;
 };

@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import { Provider as BusProvider } from '@/hooks/useBus';
+import store from '@/redux';
+import App from './App';
 import './index.css';
 import 'antd/dist/antd.css';
-import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BusProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BusProvider>,
   document.getElementById('root')
 );

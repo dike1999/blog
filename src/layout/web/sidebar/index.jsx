@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -51,8 +52,8 @@ const SideBar = () => {
 
       <Divider orientation='left'>标签</Divider>
       <div className='tag-list'>
-        {tagList.map((tag) => (
-          <Tag key={tag.color} color={tag.color}>
+        {tagList.map((tag, index) => (
+          <Tag key={index} color={tag.color}>
             <Link to={`/tags/${tag.name}`}>{tag.name}</Link>
           </Tag>
         ))}

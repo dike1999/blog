@@ -19,20 +19,21 @@ const UserInfo = ({ history }) => {
   const MenuOverLay = (
     <Menu>
       {role === 1 && (
-        <Menu.Item>
+        <Menu.Item key='1'>
           <span onClick={() => bus.emit('openUploadModal')}>导入文章</span>
         </Menu.Item>
       )}
       {role === 1 && (
-        <Menu.Item>
+        <Menu.Item key='2'>
           <span onClick={() => history.push('/admin')}>后台管理</span>
         </Menu.Item>
       )}
-      <Menu.Item>
+      <Menu.Item key='3'>
         <span onClick={() => dispatch(loginout())}>退出登录</span>
       </Menu.Item>
     </Menu>
   );
+
   return (
     <div className='header-userInfo'>
       {username ? (
