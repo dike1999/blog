@@ -1,0 +1,27 @@
+/* stylelint-disable selector-class-pattern */
+.action-list {
+  display: flex;
+  user-select: none;
+
+  li:not(:last-child) {
+    &::after {
+      content: "";
+      position: relative;
+      top: -0.06em;
+      display: inline-block;
+      vertical-align: middle;
+      width: 1px;
+      height: 0.9em;
+      margin: 0 8px;
+      background-color: #e8e8e8;
+    }
+  }
+}
+
+.delete-text {
+  color: #ff4d4f;
+
+  &:hover {
+    color: #d9363e;
+  }
+}
