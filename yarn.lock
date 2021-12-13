@@ -452,7 +452,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-antd@^4.17.2:
+antd@^4.17.3:
   version "4.17.3"
   resolved "https://registry.npmmirror.com/antd/download/antd-4.17.3.tgz#48e2cfaec75cb414782a16918c0f322af1f2d509"
   integrity sha512-enA6rsOAGtw0uN+khzvPoCui9j6m1ZvtAHY2IWC/mOUIwfycC8iuToND9ptAqeNF5yX8RZhFubmcc7Xeqk6wWg==

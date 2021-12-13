@@ -1,9 +1,11 @@
 import React from 'react';
-import MyInfo from './components/MyInfo';
+import lazy from '@/components/Lazy';
+
+const Components = lazy(() => import('@/components/404'));
 
 const App = () => (
   <div className='app'>
-    <MyInfo />
+    <Components />
   </div>
 );
 
