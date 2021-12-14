@@ -55,7 +55,6 @@ const App = () => {
     };
 
     routes.forEach((item) => renderRoute(item, contextPath));
-
     return <Switch>{children}</Switch>;
   };
 
