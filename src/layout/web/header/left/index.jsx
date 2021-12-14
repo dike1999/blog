@@ -8,7 +8,7 @@ import {
   SearchOutlined,
   MenuOutlined,
 } from '@ant-design/icons';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { HEADER_BLOG_NAME } from '@/config';
 import './index.less';
@@ -38,7 +38,7 @@ const navList = [
 
 const HeaderLeft = () => {
   const [keyword, setKeyword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ const HeaderLeft = () => {
   };
 
   const onSubmit = () => {
-    history.push(`/?page=1&keyword=${keyword}`);
+    navigate(`/?page=1&keyword=${keyword}`);
     setKeyword('');
   };
 

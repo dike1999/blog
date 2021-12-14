@@ -1,7 +1,8 @@
+/* eslint-disable object-curly-newline */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FileSyncOutlined, PlusOutlined } from '@ant-design/icons';
-// eslint-disable-next-line object-curly-newline
 import { Button, Input, Modal, BackTop, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
@@ -12,7 +13,9 @@ import useBreadcrumb from '@/hooks/useBreadcrumb';
 import List from './Tag';
 import './index.less';
 
-const Edit = ({ match, history }) => {
+const Edit = () => {
+  const params = useParams();
+  const navigate = useNavigate();
   const store = useSelector((state) => ({
     tagList: state.article.tagList,
     categoryList: state.article.categoryList,
@@ -26,7 +29,7 @@ const Edit = ({ match, history }) => {
   const [tagSelectedList, setTagSelectedList] = useState([]);
   const [cateSelectedList, setCateSelectedList] = useState([]);
 
-  const editId = parseInt(match.params.id, 10);
+  const editId = parseInt(params.id, 10);
 
   useBreadcrumb([
     { link: '/admin/article/manager', name: '文章管理' },
@@ -63,7 +66,7 @@ const Edit = ({ match, history }) => {
     if (editId) {
       fetchArticle(editId);
     }
-  }, [match.params]);
+  }, [params]);
 
   // eslint-disable-next-line consistent-return
   const add = () => {
@@ -79,7 +82,7 @@ const Edit = ({ match, history }) => {
       .then((res) => {
         Modal.confirm({
           title: '文章创建成功！是否立即查看？',
-          onOk: () => history.push(`/article/${res.id}`),
+          onOk: () => navigate(`/article/${res.id}`),
         });
       });
   };

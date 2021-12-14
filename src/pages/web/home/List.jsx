@@ -3,17 +3,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { Divider } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { EyeOutlined, CommentOutlined } from '@ant-design/icons';
 
 import { calcCommentsCount } from '@/utils';
 import ArticleTag from '@/components/ArticleTag';
 
 const ArticleList = ({ list }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const jumpTo = (id) => {
-    history.push(`/article/${id}`);
+    navigate(`/article/${id}`);
   };
 
   return (

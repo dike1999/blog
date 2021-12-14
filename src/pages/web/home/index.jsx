@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useMemo } from 'react';
 import { Empty, Spin } from 'antd';
+import { useLocation } from 'react-router-dom';
 
 import { decodeQuery, translateMarkdown } from '@/utils';
 import { HOME_PAGESIZE } from '@/utils/config';
@@ -10,18 +11,22 @@ import QuickLink from './QuickLink';
 import ArticleList from './List';
 import './index.less';
 
-const Home = ({ location }) => {
+const Home = () => {
+  const location = useLocation();
   const { loading, pagination, dataList } = useFetchList({
     requestUrl: '/article/list',
     queryParams: { pageSize: HOME_PAGESIZE },
     fetchDependence: [location.search],
   });
 
-  const list = useMemo(() => [...dataList].map((item) => {
-    const index = item.content.indexOf('<!--more-->');
-    item.content = translateMarkdown(item.content.slice(0, index));
-    return item;
-  }), [dataList]);
+  const list = useMemo(
+    () => [...dataList].map((item) => {
+      const index = item.content.indexOf('<!--more-->');
+      item.content = translateMarkdown(item.content.slice(0, index));
+      return item;
+    }),
+    [dataList]
+  );
 
   const { keyword } = decodeQuery(location.search);
 

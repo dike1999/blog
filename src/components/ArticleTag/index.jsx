@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tag, Divider } from 'antd';
@@ -48,4 +48,4 @@ ArticleTag.propTypes = {
   categoryList: PropTypes.array.isRequired,
 };
 
-export default withRouter(ArticleTag);
+export default ArticleTag;

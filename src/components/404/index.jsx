@@ -1,9 +1,9 @@
 import React from 'react';
 import { Result, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PageNotFound = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <Result
       status='404'
@@ -13,7 +13,7 @@ const PageNotFound = () => {
         <Button
           type='primary'
           onClick={() => {
-            history.push('/');
+            navigate('/');
           }}
         >
           Back Home

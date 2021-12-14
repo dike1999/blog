@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Outlet } from 'react-router-dom';
 import {
   Layout, Row, Col, BackTop, Alert
 } from 'antd';
@@ -11,13 +12,21 @@ import './index.less';
 
 // 响应式
 const siderLayout = {
-  xxl: 4, xl: 5, lg: 5, sm: 0, xs: 0
+  xxl: 4,
+  xl: 5,
+  lg: 5,
+  sm: 0,
+  xs: 0,
 };
 const contentLayout = {
-  xxl: 20, xl: 19, lg: 19, sm: 24, xs: 24
+  xxl: 20,
+  xl: 19,
+  lg: 19,
+  sm: 24,
+  xs: 24,
 };
 
-const WebLayout = ({ children }) => {
+const WebLayout = () => {
   const iphoneScreen = useMediaQuery({
     query: '(max-width: 576px)',
   });
@@ -45,7 +54,7 @@ const WebLayout = ({ children }) => {
                 }}
               />
             )}
-            {children}
+            <Outlet />
           </div>
         </Col>
       </Row>

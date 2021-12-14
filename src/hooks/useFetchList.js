@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import axios from '@/utils/axios';
 import { decodeQuery } from '@/utils';
@@ -27,7 +27,7 @@ const useFetchList = ({
   });
 
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function fetchDataList(params) {
     const requestParams = {
@@ -93,7 +93,7 @@ const useFetchList = ({
         : `?page=${page}`;
       const jumpUrl = location.pathname + search;
 
-      history.push(jumpUrl);
+      navigate(jumpUrl);
     },
     [queryParams, location.pathname]
   );

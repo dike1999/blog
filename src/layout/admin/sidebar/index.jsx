@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
 
 import menu from './menu';
@@ -71,4 +71,4 @@ const AdminSidebar = ({ selectedKeys }) => {
   );
 };
 
-export default withRouter(AdminSidebar);
+export default AdminSidebar;

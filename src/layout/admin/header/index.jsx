@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -12,20 +12,20 @@ import './index.less';
 
 const AdminHeader = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const userInfo = useSelector((state) => state.user);
 
   const menu = (
     <Menu>
       <Menu.Item key='1'>
-        <span onClick={() => history.push('/')}>返回主页</span>
+        <span onClick={() => navigate('/')}>返回主页</span>
       </Menu.Item>
       <Menu.Item key='2'>
         <span
           onClick={() => {
             dispatch(loginout());
-            history.push('/');
+            navigate('/');
           }}
         >
           退出登录

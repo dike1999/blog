@@ -1,9 +1,11 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Drawer, Divider, Spin } from 'antd';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import {
   MenuOutlined,
   ReadOutlined,
@@ -19,7 +21,10 @@ import Discuss from '@/components/Discuss';
 import Navigation from './Navigation';
 import './index.less';
 
-const Article = ({ location, match, history }) => {
+const Article = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
   const [loading, withLoading] = useAjaxLoading();
 
   const [article, setArticle] = useState({
@@ -42,15 +47,15 @@ const Article = ({ location, match, history }) => {
   }, []);
 
   useEffect(() => {
-    withLoading(axios.get(`/article/${match.params.id}`))
+    withLoading(axios.get(`/article/${params.id}`))
       .then((res) => {
         res.content = translateMarkdown(res.content);
         setArticle(res);
       })
       .catch(() => {
-        history.push('/404');
+        navigate('/404');
       });
-  }, [match.params.id]);
+  }, [params.id]);
 
   const setCommentList = (list) => {
     setArticle({ ...article, comments: list });
@@ -59,7 +64,7 @@ const Article = ({ location, match, history }) => {
   const {
     title, content, tags, categories, comments, createdAt, viewCount
   } = article;
-  const articleId = parseInt(match.params.id, 10);
+  const articleId = parseInt(params.id, 10);
   const isFoldNavigation = useMediaQuery({ query: '(max-width: 1300px)' });
   return (
     <Spin tip='Loading...' spinning={loading}>

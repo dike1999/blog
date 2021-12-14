@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { Timeline, Spin } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { ARCHIVES_PAGESIZE } from '@/utils/config';
 import { groupBy } from '@/utils';
@@ -10,13 +10,14 @@ import Pagination from '@/components/Pagination';
 import useFetchList from '@/hooks/useFetchList';
 import './index.less';
 
-const Archives = ({ location }) => {
+const Archives = () => {
+  const { pathname, search } = useLocation();
   const { dataList, loading, pagination } = useFetchList({
     requestUrl: '/article/list',
     queryParams: {
       pageSize: ARCHIVES_PAGESIZE,
     },
-    fetchDependence: [location.pathname, location.search],
+    fetchDependence: [pathname, search],
   });
 
   const list = groupBy(dataList, (item) => item.createdAt.slice(0, 7)); // 按年份排序

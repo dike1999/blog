@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Timeline, Spin } from 'antd';
 
 import { TAG_PAGESIZE } from '@/utils/config';
@@ -30,9 +30,10 @@ const TimeLineList = ({ list, name, type }) => (
 );
 
 // 根据 tag / category 获取文章列表
-const List = ({ location, match }) => {
+const List = () => {
+  const location = useLocation();
+  const { name } = useParams();
   const type = location.pathname.includes('categories') ? 'category' : 'tag';
-  const { name } = match.params;
 
   const { loading, pagination, dataList } = useFetchList({
     requestUrl: '/article/list',

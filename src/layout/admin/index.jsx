@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import Breadcrumb from '@/components/Breadcrumb';
@@ -9,7 +9,7 @@ import './index.less';
 
 const { Sider, Header, Content } = Layout;
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = () => {
   const location = useLocation();
 
   return (
@@ -27,7 +27,9 @@ const AdminLayout = ({ children }) => {
         </Sider>
         <Layout className='admin-content-wrap'>
           <Breadcrumb />
-          <Content className='admin-content'>{children}</Content>
+          <Content className='admin-content'>
+            <Outlet />
+          </Content>
         </Layout>
       </Layout>
     </Layout>

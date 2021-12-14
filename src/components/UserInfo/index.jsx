@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Button, Dropdown, Menu } from 'antd';
 
 import { loginout } from '@/redux/user/actions';
@@ -71,4 +70,4 @@ const UserInfo = ({ history }) => {
   );
 };
 
-export default withRouter(UserInfo);
+export default UserInfo;

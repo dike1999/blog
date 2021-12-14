@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import useMount from '@/hooks/useMount';
 import { decodeQuery } from '@/utils';
 import './index.less';
 
 const SearchButton = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [keyword, setKeyword] = useState('');
 
@@ -20,7 +20,7 @@ const SearchButton = () => {
   });
 
   const handleSubmit = () => {
-    if (keyword) history.push(`/?page=1&keyword=${keyword}`);
+    if (keyword) navigate(`/?page=1&keyword=${keyword}`);
   };
 
   const handleChange = (e) => {
