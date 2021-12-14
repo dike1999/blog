@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable no-param-reassign */
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import PublicComponent from '@/components/Public';
@@ -67,31 +67,37 @@ const App = () => {
         </Route>
 
         <Route path='/admin' key='/admin' element={<LayoutAdmin />}>
-          <Route index exact element={<AdminHome />} />
-          <Route
-            path='/admin/article/manager'
-            key='/admin/article/manager'
-            exact
-            element={<Manager />}
-          />
-          <Route
-            path='/admin/article/edit/:id'
-            key='/admin/article/edit/:id'
-            exact
-            element={<Edit />}
-          />
-          <Route
-            path='/admin/article/add'
-            key='/admin/article/add'
-            exact
-            element={<Edit />}
-          />
-          <Route
-            path='/admin/user'
-            key='/admin/user'
-            exact
-            element={<User />}
-          />
+          {role !== 1 ? (
+            <Route path='/admin/*' index element={<Navigate to='/' />} />
+          ) : (
+            <>
+              <Route index exact element={<AdminHome />} />
+              <Route
+                path='/admin/article/manager'
+                key='/admin/article/manager'
+                exact
+                element={<Manager />}
+              />
+              <Route
+                path='/admin/article/edit/:id'
+                key='/admin/article/edit/:id'
+                exact
+                element={<Edit />}
+              />
+              <Route
+                path='/admin/article/add'
+                key='/admin/article/add'
+                exact
+                element={<Edit />}
+              />
+              <Route
+                path='/admin/user'
+                key='/admin/user'
+                exact
+                element={<User />}
+              />
+            </>
+          )}
         </Route>
       </Routes>
       <PublicComponent />
