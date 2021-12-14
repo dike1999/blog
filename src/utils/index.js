@@ -29,6 +29,7 @@ export const translateMarkdown = (plainText, isGuardXss = false) =>
 
 // 获取 url query 参数
 export const decodeQuery = (url) => {
+  url = decodeURIComponent(url);
   const params = {};
   const paramsStr = url.replace(/\.*\?/, ''); // a=1&b=2&c=&d=xxx&e
   paramsStr.split('&').forEach((v) => {

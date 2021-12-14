@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Empty, Spin } from 'antd';
 import { useLocation } from 'react-router-dom';
 
@@ -28,7 +28,11 @@ const Home = () => {
     [dataList]
   );
 
-  const { keyword } = decodeQuery(location.search);
+  const [keyword, setKeyword] = useState('');
+  useEffect(() => {
+    const { keyword: word } = decodeQuery(location.search);
+    setKeyword(word);
+  }, []);
 
   return (
     <Spin tip='Loading...' spinning={loading}>
@@ -46,9 +50,7 @@ const Home = () => {
               description={(
                 <span>
                   不存在标题/内容中含有
-                  {' '}
                   <span className='keyword'>{keyword}</span>
-                  {' '}
                   的文章！
                 </span>
               )}
