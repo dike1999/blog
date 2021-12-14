@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, Dropdown, Menu } from 'antd';
 
 import { loginout } from '@/redux/user/actions';
@@ -9,7 +10,8 @@ import AppAvatar from '@/components/Avatar';
 import useBus from '@/hooks/useBus';
 import './index.less';
 
-const UserInfo = ({ history }) => {
+const UserInfo = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const bus = useBus();
   const userInfo = useSelector((state) => state.user);
@@ -24,7 +26,7 @@ const UserInfo = ({ history }) => {
       )}
       {role === 1 && (
         <Menu.Item key='2'>
-          <span onClick={() => history.push('/admin')}>后台管理</span>
+          <span onClick={() => navigate('/admin')}>后台管理</span>
         </Menu.Item>
       )}
       <Menu.Item key='3'>
