@@ -35,7 +35,7 @@ export const ABOUT = {
   avatar: SIDEBAR.avatar,
   describe: SIDEBAR.subTitle,
   discuss: true, // 关于页面是否开启讨论
-  renderMyInfo: <MyInfo />, // 我的介绍 自定义组件 => src/pages/web/about/MyInfo.jsx
+  renderMyInfo: <MyInfo />, // 我的介绍 自定义组件 => @/components/MyInfo
 };
 
 // 公告 announcement
