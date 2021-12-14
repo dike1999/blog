@@ -6,4 +6,4 @@ module.exports = {
   jsxBracketSameLine: false, // 多行JSX中的>另起一行（默认false）
   jsxSingleQuote: true,
   bracketSpacing: true,
-}
+};
