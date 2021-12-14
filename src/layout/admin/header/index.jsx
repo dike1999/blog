@@ -18,10 +18,10 @@ const AdminHeader = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key='1'>
         <span onClick={() => history.push('/')}>返回主页</span>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key='2'>
         <span
           onClick={() => {
             dispatch(loginout());
@@ -40,6 +40,7 @@ const AdminHeader = () => {
       <Dropdown overlay={menu} className='header-dropdown'>
         <a className='ant-dropdown-link'>
           {userInfo.username}
+          &nbsp;
           <DownOutlined />
         </a>
       </Dropdown>

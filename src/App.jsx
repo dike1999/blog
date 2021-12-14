@@ -60,12 +60,10 @@ const App = () => {
   };
 
   return (
-    <div className='app'>
-      <BrowserRouter>
-        {renderRoutes(routesData, '/')}
-        <PublicComponent />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      {renderRoutes(routesData, '/')}
+      <PublicComponent />
+    </BrowserRouter>
   );
 };
 

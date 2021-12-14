@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FileSyncOutlined, PlusOutlined } from '@ant-design/icons';
-import {
-  Button, Input, Modal, BackTop, message
-} from 'antd';
+// eslint-disable-next-line object-curly-newline
+import { Button, Input, Modal, BackTop, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
@@ -109,7 +108,9 @@ const Edit = ({ match, history }) => {
               className='title-input'
               name='title'
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
             />
           </span>
         </li>
@@ -139,7 +140,9 @@ const Edit = ({ match, history }) => {
 
       <SimpleMDE
         value={content}
-        onChange={setContent}
+        onChange={(value) => {
+          setContent(value);
+        }}
         options={{ autofocus: true, previewRender: translateMarkdown }}
       />
 

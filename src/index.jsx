@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Provider as BusProvider } from '@/hooks/useBus';
 import store from '@/redux';
 import App from './App';
-import './index.css';
+import './index.less';
 import 'antd/dist/antd.css';
 
 ReactDOM.render(

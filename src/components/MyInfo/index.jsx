@@ -42,7 +42,7 @@ const MyInfo = () => (
       <li>
         联系方式：
         <QqOutlined />
-        1138832931
+        &nbsp;1138832931
         <Divider type='vertical' />
         <MailFilled style={{ marginRight: 5 }} />
         <a href='mailto:1138832931@qq.com'>1138832931@qq.com</a>

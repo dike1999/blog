@@ -5,7 +5,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable implicit-arrow-linebreak */
 
-import marked from 'marked';
+import { marked } from 'marked';
+import hljs from 'highlight.js';
 import xss from 'xss';
 import { COLOR_LIST } from '@/utils/config';
 import { get } from '@/utils/storage';
@@ -21,10 +22,9 @@ export const translateMarkdown = (plainText, isGuardXss = false) =>
     breaks: true,
     smartLists: true,
     smartypants: true,
-    // highlight(code) {
-    //   // eslint-disable-next-line no-undef
-    //   return hljs.highlightAuto(code).value;
-    // },
+    highlight(code) {
+      return hljs.highlightAuto(code).value;
+    },
   });
 
 // 获取 url query 参数
