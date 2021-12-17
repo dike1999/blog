@@ -1,0 +1,1 @@
+.action-list{display:flex;user-select:none}.action-list li:not(:last-child):after{content:"";position:relative;top:-.06em;display:inline-block;vertical-align:middle;width:1px;height:.9em;margin:0 8px;background-color:#e8e8e8}.delete-text{color:#ff4d4f}.delete-text:hover{color:#d9363e}
