@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import styleImport, { AntdResolve } from 'vite-plugin-style-import';
+import viteCompression from 'vite-plugin-compression';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +18,14 @@ export default defineConfig({
           resolveStyle: (name) => `antd/es/${name}/style/index`,
         },
       ],
+    }),
+    viteCompression({
+      // 生成压缩包gz
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: 'gzip',
+      ext: '.gz',
     }),
   ],
   css: {
@@ -38,6 +47,12 @@ export default defineConfig({
         manualChunks: {
           lodash: ['lodash'],
         },
+      },
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
     },
   },
