@@ -52,7 +52,6 @@ function checkAuth(method, url) {
   return roleList;
 }
 
-// auth example token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJpZCI6MSwiaWF0IjoxNTY3MDcyOTE4LCJleHAiOjE1Njk2NjQ5MTh9.-V71bEfuUczUt_TgK0AWUJTbAZhDAN5wAv8RjmxfDKI
 module.exports = async (ctx, next) => {
   const roleList = checkAuth(ctx.method, ctx.url);
   //  该路由需要验证

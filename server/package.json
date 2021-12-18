@@ -1,32 +1,30 @@
 {
-  "name": "server",
+  "name": "koa",
   "version": "1.0.0",
+  "description": "Koa2学习笔记",
   "main": "index.js",
+  "author": "CoderDi",
   "license": "MIT",
-  "scripts": {
-    "server": "cross-env NODE_ENV=development nodemon app.js"
-  },
   "dependencies": {
-    "archiver": "^3.1.1",
-    "axios": "^0.19.0",
+    "archiver": "^5.3.0",
+    "axios": "^0.24.0",
     "bcrypt-nodejs": "^0.0.3",
+    "cross-env": "^7.0.3",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
-    "koa": "^2.8.1",
-    "koa-body": "^4.1.1",
-    "koa-bodyparser": "^4.2.1",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
     "koa-json-error": "^3.1.2",
     "koa-logger": "^3.2.1",
-    "koa-router": "^7.4.0",
-    "koa-send": "^5.0.0",
+    "koa-router": "^10.1.1",
+    "koa-send": "^5.0.1",
     "koa2-cors": "^2.0.6",
     "moment": "^2.29.1",
-    "mysql2": "^1.7.0",
-    "nodemailer": "^6.3.0",
-    "sequelize": "^5.21.5"
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.2"
   },
   "devDependencies": {
-    "cross-env": "^5.2.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.12.0"
   }
 }

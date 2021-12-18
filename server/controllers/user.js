@@ -1,16 +1,12 @@
-const Joi = require('joi');
+const console = require('console');
 const axios = require('axios');
+const Joi = require('joi');
+const { Op } = require('sequelize');
+
 const { GITHUB } = require('../config');
-const { decodeQuery } = require('../utils');
 const { comparePassword, encrypt } = require('../utils/bcrypt');
 const { createToken } = require('../utils/token');
-const {
-  user: UserModel,
-  comment: CommentModel,
-  reply: ReplyModel,
-  ip: IpModel,
-  sequelize,
-} = require('../models');
+const { user: UserModel, ip: IpModel, sequelize } = require('../models');
 
 /**
  * 读取 github 用户信息
@@ -22,13 +18,21 @@ async function getGithubInfo(username) {
 }
 
 class UserController {
-  // ===== utils methods
-  // 查找用户
+  /**
+   * 查找用户
+   * @param {*} params
+   * @returns
+   */
   static find(params) {
     return UserModel.findOne({ where: params });
   }
 
-  // 创建用户
+  /**
+   * 创建用户
+   * @param {*} data
+   * @param {*} role
+   * @returns
+   */
   static createGithubUser(data, role = 2) {
     const { id, login, email } = data;
     return UserModel.create({
@@ -40,24 +44,28 @@ class UserController {
     });
   }
 
-  // 更新用户信息
-  static updateUserById(userId, data) {
-    return UserModel.update(data, { where: { id: userId } });
-  }
-  // ===== utils methods
-
-  // 登录
-  static async login(ctx) {
-    const { code } = ctx.request.body;
-    if (code) {
-      await UserController.githubLogin(ctx, code);
-    } else {
-      await UserController.defaultLogin(ctx);
+  /**
+   * 初始化用户
+   * @param {String} githubLoginName - github name
+   */
+  static async initGithubUser(githubLoginName) {
+    try {
+      const github = await getGithubInfo(githubLoginName);
+      const temp = await UserController.find({ id: github.id });
+      if (!temp) {
+        UserController.createGithubUser(github, 1);
+        console.log('Success Init GithubUser!');
+      }
+    } catch (error) {
+      console.trace('create github user error ==============>', error.message);
     }
   }
 
-  // 站内用户登录
-  static async defaultLogin(ctx) {
+  /**
+   * 站内用户登录
+   * @param {*} ctx
+   */
+  static async login(ctx) {
     const validator = ctx.validate(ctx.request.body, {
       account: Joi.string().required(),
       password: Joi.string(),
@@ -67,7 +75,6 @@ class UserController {
 
       const user = await UserModel.findOne({
         where: {
-          // $or: { email: account, username: account }
           username: account,
         },
       });
@@ -89,66 +96,20 @@ class UserController {
           }); // 生成 token
           // ctx.client(200, '登录成功', { username: user.username, role, userId: id, token })
           ctx.body = {
-            username: user.username, role, userId: id, token
+            username: user.username,
+            role,
+            userId: id,
+            token,
           };
         }
       }
     }
   }
 
-  // github 登录
-  static async githubLogin(ctx, code) {
-    const result = await axios.post(GITHUB.access_token_url, {
-      client_id: GITHUB.client_id,
-      client_secret: GITHUB.client_secret,
-      code,
-    });
-
-    const { access_token } = decodeQuery(result.data);
-
-    if (access_token) {
-      // 拿到 access_token 去获取用户信息
-      const result2 = await axios.get(
-        `${GITHUB.fetch_user_url}?access_token=${access_token}`
-      );
-      const githubInfo = result2.data;
-
-      let target = await UserController.find({ id: githubInfo.id }); // 在数据库中查找该用户是否存在
-
-      if (!target) {
-        target = await UserModel.create({
-          id: githubInfo.id,
-          username: githubInfo.name || githubInfo.username,
-          github: JSON.stringify(githubInfo),
-          email: githubInfo.email,
-        });
-      } else if (target.github !== JSON.stringify(githubInfo)) {
-        // github 信息发生了变动
-        // console.log(`${githubInfo.login}: github 信息发生改变， 更新 user....`)
-        const { id, login, email } = githubInfo;
-        const data = {
-          username: login,
-          email,
-          github: JSON.stringify(githubInfo),
-        };
-        await UserController.updateUserById(id, data);
-      }
-      // username: user.username, role, userId: id, token
-      const token = createToken({ userId: githubInfo.id, role: target.role }); // 生成 token
-
-      ctx.body = {
-        github: githubInfo,
-        username: target.username,
-        userId: target.id,
-        role: target.role,
-        token,
-      };
-    } else {
-      ctx.throw(403, 'github 授权码已失效！');
-    }
-  }
-
-  // 注册
+  /**
+   * 注册
+   * @param {*} ctx
+   */
   static async register(ctx) {
     const validator = ctx.validate(ctx.request.body, {
       username: Joi.string().required(),
@@ -178,8 +139,9 @@ class UserController {
 
   /**
    * 获取用户列表
+   * @param {*} ctx
    */
-  static async getList(ctx) {
+  static async getUser(ctx) {
     const validator = ctx.validate(ctx.query, {
       username: Joi.string().allow(''),
       type: Joi.number(), // 检索类型 type = 1 github 用户 type = 2 站内用户 不传则检索所有
@@ -189,25 +151,24 @@ class UserController {
     });
 
     if (validator) {
-      const {
-        page = 1, pageSize = 10, username, type
-      } = ctx.query;
+      const { page = 1, pageSize = 10, username, type } = ctx.query;
       const rangeDate = ctx.query['rangeDate[]'];
       const where = {
-        role: { $not: 1 },
+        role: { [Op.not]: 1 },
       };
 
       if (username) {
-        where.username = {};
-        where.username.$like = `%${username}%`;
+        where.username = {
+          [Op.like]: `%${username}%`,
+        };
       }
 
       if (type) {
-        where.github = parseInt(type, 10) === 1 ? { $not: null } : null;
+        where.github = parseInt(type, 10) === 1 ? { [Op.not]: null } : null;
       }
 
       if (Array.isArray(rangeDate) && rangeDate.length === 2) {
-        where.createdAt = { $between: rangeDate };
+        where.createdAt = { [Op.between]: rangeDate };
       }
 
       const result = await UserModel.findAndCountAll({
@@ -218,28 +179,23 @@ class UserController {
         order: [['createdAt', 'DESC']],
       });
 
-      // ctx.client(200, 'success', result)
       ctx.body = result;
     }
   }
 
-  static async delete(ctx) {
-    const validator = ctx.validate(ctx.params, {
-      userId: Joi.number().required(),
-    });
-
-    if (validator) {
-      await sequelize.query(
-        `delete comment, reply from comment left join reply on comment.id=reply.commentId where comment.userId=${ctx.params.userId}`
-      );
-      await UserModel.destroy({ where: { id: ctx.params.userId } });
-      // ctx.client(200)
-      ctx.status = 204;
-    }
+  /**
+   * 更新用户信息
+   * @param {*} userId
+   * @param {*} data
+   * @returns
+   */
+  static updateUserById(userId, data) {
+    return UserModel.update(data, { where: { id: userId } });
   }
 
   /**
-   * 更新用户
+   * 更新用户信息
+   * @param {*} ctx
    */
   static async updateUser(ctx) {
     const validator = ctx.validate(
@@ -269,18 +225,20 @@ class UserController {
   }
 
   /**
-   * 初始化用户
-   * @param {String} githubLoginName - github name
+   * 删除用户
+   * @param {*} ctx
    */
-  static async initGithubUser(githubLoginName) {
-    try {
-      const github = await getGithubInfo(githubLoginName);
-      const temp = await UserController.find({ id: github.id });
-      if (!temp) {
-        UserController.createGithubUser(github, 1);
-      }
-    } catch (error) {
-      console.trace('create github user error ==============>', error.message);
+  static async delete(ctx) {
+    const validator = ctx.validate(ctx.params, {
+      userId: Joi.number().required(),
+    });
+
+    if (validator) {
+      await sequelize.query(
+        `delete comment, reply from comment left join reply on comment.id=reply.commentId where comment.userId=${ctx.params.userId}`
+      );
+      await UserModel.destroy({ where: { id: ctx.params.userId } });
+      ctx.status = 204;
     }
   }
 }

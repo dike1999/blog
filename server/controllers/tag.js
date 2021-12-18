@@ -1,4 +1,4 @@
-// import models
+const { Op } = require('sequelize');
 const {
   tag: TagModel,
   category: CategoryModel,
@@ -14,7 +14,7 @@ class TagController {
       ],
       group: 'name',
       where: {
-        articleId: { $not: null },
+        articleId: { [Op.not]: null },
       },
       order: [[sequelize.fn('COUNT', sequelize.col('name')), 'desc']],
     });
@@ -30,11 +30,10 @@ class TagController {
       ],
       group: 'name',
       where: {
-        articleId: { $not: null },
+        articleId: { [Op.not]: null },
       },
       order: [[sequelize.fn('COUNT', sequelize.col('name')), 'desc']],
     });
-
     ctx.body = data;
   }
 }

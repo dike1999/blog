@@ -1,4 +1,3 @@
-// article 表
 module.exports = (sequelize, dataTypes) => {
   const Tag = sequelize.define('tag', {
     id: {

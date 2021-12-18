@@ -1,5 +1,5 @@
 const moment = require('moment');
-// article 表
+
 module.exports = (sequelize, dataTypes) => {
   const Reply = sequelize.define(
     'reply',

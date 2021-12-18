@@ -31,11 +31,11 @@ const config = {
     expiresIn: '24h', // token 有效期
   },
   DATABASE: {
-    database: 'blog',
+    database: 'learn',
     user: 'root',
-    password: 'Dk@11090016',
+    password: 'DK090016a',
     options: {
-      host: '101.201.140.172', // 连接的 host 地址
+      host: '127.0.0.1', // 连接的 host 地址
       dialect: 'mysql', // 连接到 mysql
       pool: {
         max: 5,

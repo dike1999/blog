@@ -1,5 +1,3 @@
-// response 设置
-
 // 状态码的匹配列表
 const codeMapList = [
   { code: 200, message: 'success' },
@@ -18,7 +16,7 @@ const codeMapList = [
  * @example app.context.client = func , ctx.client(200)
  */
 // eslint-disable-next-line default-param-last
-module.exports = function (code = 200, message, data = null) {
+module.exports = function response(code = 200, message, data = null) {
   this.response.set('Content-Type', 'application/json');
   const item = codeMapList.find((d) => d.code === code);
   const targetMessage = item ? item.message : '';

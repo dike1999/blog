@@ -1,11 +1,12 @@
-/* eslint-disable prefer-destructuring */
 /* eslint-disable prefer-promise-reject-errors */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-underscore-dangle */
 /**
  * 操作 md 文件 的 utils
  */
 const fs = require('fs');
 const path = require('path');
+const console = require('console');
 
 const uploadPath = path.resolve(__dirname, '../upload');
 const outputPath = path.resolve(__dirname, '../output');
@@ -39,7 +40,7 @@ function findOrCreateFilePath(filePath) {
  */
 function decodeFile(filePath) {
   const fileData = fs.readFileSync(filePath, 'utf-8');
-  const sliceData = fileData.slice(0, 500).trim(); // slice(0, 500) 我们需要对文章里包含的前缀进行解析 前缀参考 hexo 创建的前缀内容
+  const sliceData = fileData.slice(0, 500).trim(); // slice(0, 500) 我们需要对文章里包含的前缀进行解析
   const lastIndex = sliceData.lastIndexOf('\n---');
   const hasPrefix = sliceData.indexOf('---') === 0 && lastIndex > 0;
   if (hasPrefix) {
@@ -92,21 +93,21 @@ function decodeFile(filePath) {
 }
 
 /**
-   * @func createFileContent 创建文章前缀
-   * @param {Object} article
-   * @return {String} 返回生成后的字符串
-   * render just like:
-    ---
-      title: mysql - 对 table 的操作
-      date: 2018-08-03 21:37:37
-      categories: HTML-CSS
-      tags:
-        - HTML
-        - canvas
-    ---
+    * @func createFileContent 创建文章前缀
+    * @param {Object} article
+    * @return {String} 返回生成后的字符串
+    * render just like:
+     ---
+       title: mysql - 对 table 的操作
+       date: 2018-08-03 21:37:37
+       categories: HTML-CSS
+       tags:
+         - HTML
+         - canvas
+     ---
 
-    ...
-*/
+     ...
+ */
 function createFileContent({
   title, content, createdAt, categories, tags
 }) {

@@ -1,11 +1,12 @@
+/* eslint-disable no-param-reassign */
 const Joi = require('joi');
+const console = require('console');
+
 const { EMAIL_NOTICE } = require('../config');
 const { getEmailData, sendEmail } = require('../utils/email');
-// import models
+
 const {
   article: ArticleModel,
-  tag: TagModel,
-  category: CategoryModel,
   comment: CommentModel,
   reply: ReplyModel,
   user: UserModel,
@@ -22,16 +23,16 @@ async function sendingEmail(articleId, commentList, commentId, userId) {
     where: { id: articleId },
     attributes: ['id', 'title'],
   });
-  const target = commentList.rows.find((d) => d.id === parseInt(commentId));
+  const target = commentList.rows.find((d) => d.id === parseInt(commentId, 10));
 
   const { emailList, html } = getEmailData(article, target, userId);
 
   Promise.all(emailList.map((receiver) => sendEmail({ receiver, html })))
     .then((res) => {
-      console.log('success to send email');
+      console.log('success to send email: ', res);
     })
     .catch((e) => {
-      console.log('fail to send email');
+      console.log('fail to send email: ', e);
     });
 }
 
@@ -62,7 +63,7 @@ class DiscussController {
       } else if (user.disabledDiscuss) {
         ctx.status = 401;
         ctx.response.body = {
-          message: '您已被禁言，请文明留言！',
+          message: '您已被禁言，请文明留言!',
         };
       } else {
         const { ip } = ctx.request;
@@ -118,7 +119,6 @@ class DiscussController {
     if (validator) {
       const { replyId } = ctx.params;
       await ReplyModel.destroy({ where: { id: replyId } });
-      // ctx.client(200)
       ctx.status = 204;
     }
   }

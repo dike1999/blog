@@ -4,7 +4,7 @@ import MyInfo from '@/components/MyInfo';
 import avatarImg from '@/assets/images/avatar.png';
 
 // API_BASE_URL
-export const API_BASE_URL = 'http://127.0.0.1:6060';
+export const API_BASE_URL = 'http://101.201.140.172:6060';
 // project config
 export const HEADER_BLOG_NAME = 'CoderDi'; // header title 显示的名字
 // === sidebar

@@ -1,11 +1,12 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
+const console = require('console');
 const Joi = require('joi');
-
-// import models
-
+const send = require('koa-send'); // 文件下载
 const fs = require('fs');
 const archiver = require('archiver'); // 打包 zip
-const send = require('koa-send'); // 文件下载
+const { Op } = require('sequelize');
+
 const {
   uploadPath,
   outputPath,
@@ -16,15 +17,17 @@ const {
 const {
   article: ArticleModel,
   tag: TagModel,
+  user: UserModel,
   category: CategoryModel,
   comment: CommentModel,
   reply: ReplyModel,
-  user: UserModel,
   sequelize,
 } = require('../models');
 
 class ArticleController {
-  // 初始化数据 关于页面（用于评论关联）
+  /**
+   * 初始化数据 AboutPage
+   */
   static async initAboutPage() {
     const result = await ArticleModel.findOne({ where: { id: -1 } });
     if (!result) {
@@ -33,10 +36,14 @@ class ArticleController {
         title: '关于页面',
         content: '关于页面存档，勿删',
       });
+      console.log('Success Init AboutPage!');
     }
   }
 
-  // 创建文章
+  /**
+   * 创建文章
+   * @param {*} ctx
+   */
   static async create(ctx) {
     const validator = ctx.validate(ctx.request.body, {
       authorId: Joi.number().required(),
@@ -56,7 +63,7 @@ class ArticleController {
       } = ctx.request.body;
       const result = await ArticleModel.findOne({ where: { title } });
       if (result) {
-        ctx.throw(403, '创建失败，该文章已存在！');
+        ctx.throw(403, '创建失败，该文章已存在!');
       } else {
         const tags = tagList.map((t) => ({ name: t }));
         const categories = categoryList.map((c) => ({ name: c }));
@@ -75,8 +82,80 @@ class ArticleController {
     }
   }
 
+  /**
+   * 获取文章列表
+   * @param {*} ctx
+   */
+  static async getArticleList(ctx) {
+    const validator = ctx.validate(ctx.query, {
+      page: Joi.string(),
+      pageSize: Joi.number(),
+      keyword: Joi.string().allow(''), // 关键字查询
+      category: Joi.string(),
+      tag: Joi.string(),
+      preview: Joi.number(),
+      order: Joi.string(),
+    });
+
+    if (validator) {
+      const {
+        page = 1,
+        pageSize = 10,
+        preview = 1,
+        keyword = '',
+        tag,
+        category,
+        order,
+      } = ctx.query;
+      const tagFilter = tag ? { name: tag } : null;
+      const categoryFilter = category ? { name: category } : null;
+
+      let articleOrder = [['createdAt', 'DESC']];
+      if (order) {
+        articleOrder = [order.split(' ')];
+      }
+
+      const data = await ArticleModel.findAndCountAll({
+        where: {
+          id: {
+            [Op.not]: -1, // 过滤关于页面的副本
+          },
+          [Op.or]: {
+            title: {
+              [Op.like]: `%${keyword}%`,
+            },
+            content: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+        },
+        include: [
+          { model: TagModel, attributes: ['name'], where: tagFilter },
+          { model: CategoryModel, attributes: ['name'], where: categoryFilter },
+          {
+            model: CommentModel,
+            attributes: ['id'],
+            include: [{ model: ReplyModel, attributes: ['id'] }],
+          },
+        ],
+        offset: (page - 1) * pageSize,
+        limit: parseInt(pageSize, 10),
+        order: articleOrder,
+        row: true,
+        distinct: true, // count 计算
+      });
+      if (preview === 1) {
+        data.rows.forEach((d) => {
+          d.content = d.content.slice(0, 1000); // 只是获取预览，减少打了的数据传输。。。
+        });
+      }
+
+      ctx.body = data;
+    }
+  }
+
   // 获取文章详情
-  static async findById(ctx) {
+  static async getArticleById(ctx) {
     const validator = ctx.validate(
       { ...ctx.params, ...ctx.query },
       {
@@ -125,8 +204,9 @@ class ArticleController {
       const { type = 1 } = ctx.query;
       // viewer count ++
       if (type === 1) {
+        const countAddition = data.viewCount + 1;
         ArticleModel.update(
-          { viewCount: ++data.viewCount },
+          { viewCount: countAddition },
           { where: { id: ctx.params.id } }
         );
       }
@@ -142,76 +222,10 @@ class ArticleController {
     }
   }
 
-  // 获取文章列表
-  static async getList(ctx) {
-    const validator = ctx.validate(ctx.query, {
-      page: Joi.string(),
-      pageSize: Joi.number(),
-      keyword: Joi.string().allow(''), // 关键字查询
-      category: Joi.string(),
-      tag: Joi.string(),
-      preview: Joi.number(),
-      order: Joi.string(),
-    });
-
-    if (validator) {
-      const {
-        page = 1,
-        pageSize = 10,
-        preview = 1,
-        keyword = '',
-        tag,
-        category,
-        order,
-      } = ctx.query;
-      const tagFilter = tag ? { name: tag } : null;
-      const categoryFilter = category ? { name: category } : null;
-
-      let articleOrder = [['createdAt', 'DESC']];
-      if (order) {
-        articleOrder = [order.split(' ')];
-      }
-
-      const data = await ArticleModel.findAndCountAll({
-        where: {
-          id: {
-            $not: -1, // 过滤关于页面的副本
-          },
-          $or: {
-            title: {
-              $like: `%${keyword}%`,
-            },
-            content: {
-              $like: `%${keyword}%`,
-            },
-          },
-        },
-        include: [
-          { model: TagModel, attributes: ['name'], where: tagFilter },
-          { model: CategoryModel, attributes: ['name'], where: categoryFilter },
-          {
-            model: CommentModel,
-            attributes: ['id'],
-            include: [{ model: ReplyModel, attributes: ['id'] }],
-          },
-        ],
-        offset: (page - 1) * pageSize,
-        limit: parseInt(pageSize, 10),
-        order: articleOrder,
-        row: true,
-        distinct: true, // count 计算
-      });
-      if (preview === 1) {
-        data.rows.forEach((d) => {
-          d.content = d.content.slice(0, 1000); // 只是获取预览，减少打了的数据传输。。。
-        });
-      }
-
-      ctx.body = data;
-    }
-  }
-
-  // 修改文章
+  /**
+   * 修改文章
+   * @param {*} ctx
+   */
   static async update(ctx) {
     const validator = ctx.validate(
       {
@@ -248,7 +262,10 @@ class ArticleController {
     }
   }
 
-  // 删除文章
+  /**
+   * 删除文章
+   * @param {*} ctx
+   */
   static async delete(ctx) {
     const validator = ctx.validate(ctx.params, {
       id: Joi.number().required(),
@@ -268,7 +285,10 @@ class ArticleController {
     }
   }
 
-  // 删除多个文章
+  /**
+   * 删除多个文章
+   * @param {*} ctx
+   */
   static async delList(ctx) {
     const validator = ctx.validate(ctx.params, {
       list: Joi.string().required(),
@@ -291,7 +311,7 @@ class ArticleController {
 
   /**
    * 确认文章是否存在
-   *
+   * @param {*} ctx
    * @response existList: 数据库中已存在有的文章（包含文章的具体内容）
    * @response noExistList: 解析 md 文件 并且返回数据库中不存在的 具体有文件名 解析后的文件标题
    */
@@ -323,15 +343,18 @@ class ArticleController {
     }
   }
 
-  // 上传文章
+  /**
+   * 上传文章
+   * @param {*} ctx
+   */
   static async upload(ctx) {
     const { file } = ctx.request.files; // 获取上传文件
 
     await findOrCreateFilePath(uploadPath); // 创建文件目录
 
-    const upload = (file) => {
-      const reader = fs.createReadStream(file.path); // 创建可读流
-      const fileName = file.name;
+    const upload = (file_) => {
+      const reader = fs.createReadStream(file_.path); // 创建可读流
+      const fileName = file_.name;
       const filePath = `${uploadPath}/${fileName}`;
       const upStream = fs.createWriteStream(filePath);
       reader.pipe(upStream);
@@ -340,7 +363,12 @@ class ArticleController {
         console.log('上传成功');
       });
     };
-    Array.isArray(file) ? file.forEach((it) => upload(it)) : upload(file);
+
+    if (Array.isArray(file)) {
+      file.forEach((it) => upload(it));
+    } else {
+      upload(file);
+    }
     ctx.status = 204;
   }
 
@@ -353,11 +381,6 @@ class ArticleController {
     if (validator) {
       const { uploadList, authorId } = ctx.request.body;
       await findOrCreateFilePath(uploadPath); // 检查目录
-      // const insertList = []
-      // const updateList = []
-      // uploadList.forEach(file => {
-      //   file.exist ? updateList.push(file) : insertList.push(file)
-      // })
 
       const _parseList = (list) => list.map((item) => {
         const filePath = `${uploadPath}/${item.fileName}`;
@@ -415,7 +438,10 @@ class ArticleController {
     }
   }
 
-  // 导出文章
+  /**
+   * 导出文章
+   * @param {*} ctx
+   */
   static async output(ctx) {
     const validator = ctx.validate(ctx.params, {
       id: Joi.number().required(),
@@ -431,12 +457,16 @@ class ArticleController {
         ],
       });
 
-      const { filePath, fileName } = await generateFile(article);
+      const { fileName } = await generateFile(article);
       ctx.attachment(decodeURI(fileName));
       await send(ctx, fileName, { root: outputPath });
     }
   }
 
+  /**
+   * 导出指定文章
+   * @param {*} ctx
+   */
   static async outputList(ctx) {
     const validator = ctx.validate(ctx.params, {
       list: Joi.string().required(),
@@ -455,7 +485,6 @@ class ArticleController {
         ],
       });
 
-      // const filePath = await generateFile(list[0])
       await Promise.all(list.map((article) => generateFile(article)));
 
       // 打包压缩 ...
@@ -475,11 +504,15 @@ class ArticleController {
     }
   }
 
+  /**
+   * 导出所有文章
+   * @param {*} ctx
+   */
   static async outputAll(ctx) {
     const list = await ArticleModel.findAll({
       where: {
         id: {
-          $not: -1, // 过滤关于页面的副本
+          [Op.not]: -1, // 过滤关于页面的副本
         },
       },
       include: [
@@ -489,7 +522,6 @@ class ArticleController {
       ],
     });
 
-    // const filePath = await generateFile(list[0])
     await Promise.all(list.map((article) => generateFile(article)));
 
     // 打包压缩 ...

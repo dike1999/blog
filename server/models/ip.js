@@ -1,4 +1,3 @@
-// ip 表
 module.exports = (sequelize, dataTypes) => {
   const Ip = sequelize.define('ip', {
     id: { type: dataTypes.INTEGER(11), primaryKey: true, autoIncrement: true },

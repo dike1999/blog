@@ -1,4 +1,3 @@
-// const response = require('./response')
 const Joi = require('joi');
 
 /**
@@ -13,7 +12,6 @@ function validate(params = {}, schema = {}) {
     allowUnknown: true,
   });
   if (validator.error) {
-    // ctx.client(403, validator.error.message)
     ctx.throw(400, validator.error.message);
     return false;
   }
@@ -21,6 +19,5 @@ function validate(params = {}, schema = {}) {
 }
 // 绑定 app.context  ctx.func 直接调用
 module.exports = {
-  // client: response, // 快捷设置给客户端的 response
   validate,
 };
