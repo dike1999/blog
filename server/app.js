@@ -52,7 +52,7 @@ app.listen(config.PORT, () => {
       const initData = require('./initData');
       initData(); // 创建初始化数据
       console.log('sequelize connect success');
-      console.log(`sever listen on http://127.0.0.1:${config.PORT}`);
+      console.log(`server listen on http://127.0.0.1:${config.PORT}`);
     })
     .catch((err) => {
       console.log(err);
