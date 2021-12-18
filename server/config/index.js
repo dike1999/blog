@@ -1,5 +1,3 @@
-const devMode = process.env.NODE_ENV === 'development';
-
 const config = {
   PORT: 6060, // 启动端口
   ADMIN_GITHUB_LOGIN_NAME: 'dike1999', // 博主的 github 登录的账户名 user
@@ -24,8 +22,8 @@ const config = {
         pass: 'TZXDGCMBYNJLIJDZ', // generated ethereal password 授权码 而非 密码
       },
     },
-    subject: 'CoderDi的博客 - 您的评论获得新的回复！', // 主题
-    text: '您的评论获得新的回复！',
+    subject: 'CoderDi的博客 - 您的评论获得新的回复!', // 主题
+    text: '您的评论获得新的回复!',
     WEB_HOST: 'http://101.201.140.172', // email callback url
   },
   TOKEN: {
