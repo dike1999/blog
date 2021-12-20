@@ -4,7 +4,7 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { EyeOutlined, CommentOutlined } from '@ant-design/icons';
+import { EyeOutlined, CommentOutlined, LikeOutlined } from '@ant-design/icons';
 
 import { calcCommentsCount } from '@/utils';
 import ArticleTag from '@/components/ArticleTag';
@@ -35,12 +35,15 @@ const ArticleList = ({ list }) => {
 
           <div className='list-item-others'>
             <CommentOutlined style={{ marginRight: 4 }} />
-            <span style={{ marginRight: 8 }}>
+            <span style={{ marginRight: 12 }}>
               {calcCommentsCount(item.comments)}
             </span>
 
             <EyeOutlined style={{ marginRight: 4 }} />
-            <span>{item.viewCount}</span>
+            <span style={{ marginRight: 12 }}>{item.viewCount}</span>
+
+            <LikeOutlined style={{ marginRight: 4 }} />
+            <span>{item.like || 0}</span>
 
             <ArticleTag tagList={item.tags} categoryList={item.categories} />
           </div>

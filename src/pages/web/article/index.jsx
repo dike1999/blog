@@ -86,7 +86,7 @@ const Article = () => {
             <a
               className='comment-count'
               href='#discuss'
-              style={{ color: 'inherit' }}
+              style={{ color: 'inherit', paddingRight: '10px' }}
             >
               <CommentOutlined style={{ marginRight: 2 }} />
               <span style={{ marginRight: 5 }}>
