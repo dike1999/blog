@@ -4,28 +4,44 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import loadable from '@loadable/component';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import PublicComponent from '@/components/Public';
-import lazy from '@/components/Lazy';
-import LayoutWeb from '@/layout/web';
-import LayoutAdmin from '@/layout/admin';
+
+// lazy load component
+const dynamic = (impoter) => {
+  const antdIcon = (
+    <LoadingOutlined type='loading' style={{ fontSize: 48 }} spin />
+  );
+  return loadable(() => impoter, {
+    fallback: (
+      <Spin
+        indicator={antdIcon}
+        style={{ float: 'right', marginTop: '20px', marginRight: '20px' }}
+      />
+    ),
+  });
+};
+
+// 必须要在此处先定义页面组件，然后再Router组件中引入，避免页面被重复渲染两次
+const LayoutWeb = dynamic(import('@/layout/web'));
+const LayoutAdmin = dynamic(import('@/layout/admin'));
+const AdminHome = dynamic(import('@/pages/admin/home'));
+const Edit = dynamic(import('@/pages/admin/article/edit'));
+const Manager = dynamic(import('@/pages/admin/article/manager'));
+const User = dynamic(import('@/pages/admin/user'));
+const Home = dynamic(import('@/pages/web/home'));
+const Article = dynamic(import('@/pages/web/article'));
+const Archives = dynamic(import('@/pages/web/archives'));
+const Categories = dynamic(import('@/pages/web/categories'));
+const Tags = dynamic(import('@/pages/web/tag'));
+const About = dynamic(import('@/pages/web/about'));
+const NotFound = dynamic(import('@/components/404'));
 
 const App = () => {
   const role = useSelector((state) => state.user.role);
-
-  // 管理页
-  const AdminHome = lazy(() => import('@/pages/admin/home'));
-  const Edit = lazy(() => import('@/pages/admin/article/edit'));
-  const Manager = lazy(() => import('@/pages/admin/article/manager'));
-  const User = lazy(() => import('@/pages/admin/user'));
-  // 用户页
-  const Home = lazy(() => import('@/pages/web/home'));
-  const Article = lazy(() => import('@/pages/web/article'));
-  const Archives = lazy(() => import('@/pages/web/archives'));
-  const Categories = lazy(() => import('@/pages/web/categories'));
-  const Tags = lazy(() => import('@/pages/web/tag'));
-  const About = lazy(() => import('@/pages/web/about'));
-  const NotFound = lazy(() => import('@/components/404'));
 
   return (
     <BrowserRouter>
