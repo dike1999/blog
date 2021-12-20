@@ -6,7 +6,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 
 import { marked } from 'marked';
-import hljs from 'highlight.js';
+import Prismjs from 'prismjs';
 import xss from 'xss';
 import { COLOR_LIST } from '@/utils/config';
 import { get } from '@/utils/storage';
@@ -23,7 +23,12 @@ export const translateMarkdown = (plainText, isGuardXss = false) =>
     smartLists: true,
     smartypants: true,
     highlight(code) {
-      return hljs.highlightAuto(code).value;
+      const html = Prismjs.highlight(
+        code,
+        Prismjs.languages.javascript,
+        'javascript'
+      );
+      return html;
     },
   });
 
