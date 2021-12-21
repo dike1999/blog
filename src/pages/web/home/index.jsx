@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { decodeQuery, translateMarkdown } from '@/utils';
 import { HOME_PAGESIZE } from '@/utils/config';
 import Pagination from '@/components/Pagination';
+import Footer from '@/components/Footer';
 import useFetchList from '@/hooks/useFetchList';
 import QuickLink from './QuickLink';
 import ArticleList from './List';
@@ -51,7 +52,7 @@ const Home = () => {
                 <span>
                   不存在标题/内容中含有
                   <span className='keyword'>{keyword}</span>
-                  的文章！
+                  的文章!
                 </span>
               )}
             />
@@ -66,6 +67,7 @@ const Home = () => {
           }}
         />
       </div>
+      <Footer />
     </Spin>
   );
 };

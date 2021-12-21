@@ -5,6 +5,7 @@ import { Avatar } from 'antd';
 import { SIDEBAR, ABOUT } from '@/config';
 import axios from '@/utils/axios';
 import Discuss from '@/components/Discuss';
+import Footer from '@/components/Footer';
 
 const About = () => {
   const [commentList, setCommentList] = useState([]);
@@ -31,6 +32,7 @@ const About = () => {
           setCommentList={setCommentList}
         />
       )}
+      <Footer />
     </div>
   );
 };

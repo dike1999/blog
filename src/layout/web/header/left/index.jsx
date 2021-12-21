@@ -92,7 +92,7 @@ const HeaderLeft = () => {
         overlayClassName='header-dropdown'
         trigger={['click']}
         overlay={menu}
-        getPopupContainer={() => document.querySelector('.app-header .header-left')}
+        getPopupContainer={() => document.querySelector('.header-left')}
       >
         <MenuOutlined className='header-dropdown-icon' />
       </Dropdown>
