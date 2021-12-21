@@ -34,13 +34,13 @@ const ArticleList = ({ list }) => {
           />
 
           <div className='list-item-others'>
+            <EyeOutlined style={{ marginRight: 4 }} />
+            <span style={{ marginRight: 12 }}>{item.viewCount}</span>
+
             <CommentOutlined style={{ marginRight: 4 }} />
             <span style={{ marginRight: 12 }}>
               {calcCommentsCount(item.comments)}
             </span>
-
-            <EyeOutlined style={{ marginRight: 4 }} />
-            <span style={{ marginRight: 12 }}>{item.viewCount}</span>
 
             <LikeOutlined style={{ marginRight: 4 }} />
             <span>{item.like || 0}</span>
