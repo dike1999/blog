@@ -2,6 +2,8 @@ import React from 'react';
 import { GithubFilled, WechatFilled, QqCircleFilled } from '@ant-design/icons';
 import MyInfo from '@/components/MyInfo';
 import avatarImg from '@/assets/images/avatar.png';
+import WeChatImg from '@/assets/images/WeChat.png';
+import QQImg from '@/assets/images/QQ.png';
 
 // API_BASE_URL
 export const API_BASE_URL = 'http://101.201.140.172:6060';
@@ -15,7 +17,8 @@ export const SIDEBAR = {
   // 个人主页
   homepages: {
     QQ: {
-      link: '',
+      link: QQImg,
+      isImg: true,
       icon: <QqCircleFilled className='homepage-icon' />,
     },
     github: {
@@ -23,7 +26,8 @@ export const SIDEBAR = {
       icon: <GithubFilled className='homepage-icon' />,
     },
     微信: {
-      link: '',
+      link: WeChatImg,
+      isImg: true,
       icon: <WechatFilled type='iconjuejin' className='homepage-icon' />,
     },
   },

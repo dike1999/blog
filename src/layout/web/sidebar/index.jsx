@@ -32,7 +32,7 @@ const SideBar = () => {
         {Object.entries(SIDEBAR.homepages).map(([linkName, item]) => (
           <li key={linkName}>
             {item.icon}
-            <Href href={item.link} extra={<>{linkName}</>} />
+            <Href href={item.link} isImg={item.isImg} extra={<>{linkName}</>} />
           </li>
         ))}
       </ul>
