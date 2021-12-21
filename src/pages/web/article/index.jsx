@@ -18,6 +18,7 @@ import { translateMarkdown, calcCommentsCount } from '@/utils';
 import useAjaxLoading from '@/hooks/useAjaxLoading';
 import ArticleTag from '@/components/ArticleTag';
 import Discuss from '@/components/Discuss';
+import Footer from '@/components/Footer';
 import Navigation from './Navigation';
 import './index.less';
 
@@ -133,6 +134,7 @@ const Article = () => {
           setCommentList={setCommentList}
         />
       </article>
+      <Footer style={{ marginTop: '-18px' }} />
     </Spin>
   );
 };

@@ -21,7 +21,10 @@ const About = () => {
   }, []);
 
   return (
-    <div className='app-about' style={{ paddingRight: iphoneScreen ? 0 : 20 }}>
+    <div
+      className='app-about'
+      style={{ paddingRight: iphoneScreen ? 0 : 20, marginTop: '10px' }}
+    >
       <Avatar src={SIDEBAR.avatar} />
       <span style={{ paddingLeft: 10 }}>{ABOUT.describe}</span>
       {ABOUT.renderMyInfo || null}
