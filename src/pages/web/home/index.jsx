@@ -66,7 +66,7 @@ const Home = () => {
             pagination.onChange(page);
           }}
         />
-        <Footer style={{ marginTop: '64px' }} />
+        <Footer style={{ marginTop: '54px' }} />
       </div>
     </Spin>
   );
