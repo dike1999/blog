@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { Divider, Drawer } from 'antd';
+import { Divider, Drawer, Button } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
 const title = '快速导航';
@@ -34,7 +34,21 @@ const QuickLink = ({ list }) => {
         <MenuOutlined className='nav-phone-icon' />
       </div>
       <Drawer
-        title={title}
+        title={(
+          <>
+            <span>{title}</span>
+            <Divider type='vertical' />
+            <Button
+              type='link'
+              style={{ fontSize: '16px' }}
+              onClick={() => {
+                setDrawerVisible(false);
+              }}
+            >
+              关闭导航
+            </Button>
+          </>
+        )}
         placement='right'
         closable={false}
         onClose={() => setDrawerVisible(false)}

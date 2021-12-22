@@ -4,7 +4,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Drawer, Divider, Spin } from 'antd';
+import {
+  Drawer, Divider, Spin, Button
+} from 'antd';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import {
   MenuOutlined,
@@ -119,6 +121,15 @@ const Article = () => {
             >
               <div className='right-navigation'>
                 <Navigation content={content} />
+                <Button
+                  type='link'
+                  style={{ fontSize: '16px' }}
+                  onClick={() => {
+                    setDrawerVisible(false);
+                  }}
+                >
+                  关闭导航
+                </Button>
               </div>
             </Drawer>
           </>
