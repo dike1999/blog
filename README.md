@@ -14,6 +14,9 @@
 - PC 端界面
   ![PC界面](./src/assets/images/Snipaste_PC.png)
 
+- 管理后台界面
+  ![管理后台界面](./src/assets/images/Snipaste_Admin.png)
+
 - 移动端界面
   ![移动端界面](./src/assets/images/Snipaste_Mobile.png)
 
