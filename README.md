@@ -1,6 +1,6 @@
 # 开始使用
 
-- 该博客基于Vite2 + React [Vite 官方中文文档](https://cn.vitejs.dev/).
+- 该博客基于 Vite2 + React [Vite 官方中文文档](https://cn.vitejs.dev/).
 - 构建过程可以通过 build.rollupOptions 直接调整底层的 [Rollup 选项](https://rollupjs.org/guide/zh/)
 
 ## 项目使用说明
@@ -11,13 +11,18 @@
 - 服务端: [http://101.201.140.172:6060/](http://101.201.140.172:6060/) Nginx反向代理+Pm2-Node
 - 静态资源服务器:[http://101.201.140.172:7878/](http://101.201.140.172:7878/) 结合&图片上传云服务器-以前的项目
 
+- PC 端界面
+  ![PC界面](./src/assets/images/Snipaste_PC.png)
+
+- 移动端界面
+  ![移动端界面](./src/assets/images/Snipaste_Mobile.png)
+
 ### 性能优化
 
 - SEO (博客暂时不能域名备案)
 - gzip压缩，强缓存，协商缓存
 - 自定义配置打包优化 4.3MB→2.4MB，
 - 代码分割，按需加载，CI/CD自动构建
-- 企业化开发流程 (参考百词斩&好未来的前端团队开发文档)
 - 设备适配 响应式布局 前端代码埋点
 - 前端性能优化方案 遵循雅虎军规35条
 
