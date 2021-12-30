@@ -43,7 +43,7 @@ const List = () => {
 
   return (
     <Spin tip='Loading...' spinning={loading} delay={500}>
-      <div className='app-tags'>
+      <div className='app-tags' style={{ paddingTop: '16px' }}>
         <TimeLineList list={dataList} name={name} type={type} />
         <Pagination
           {...pagination}
