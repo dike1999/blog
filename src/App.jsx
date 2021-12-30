@@ -38,7 +38,7 @@ const Archives = dynamic(import('@/pages/web/archives'));
 const Categories = dynamic(import('@/pages/web/categories'));
 const Tags = dynamic(import('@/pages/web/tag'));
 const About = dynamic(import('@/pages/web/about'));
-const NotFound = dynamic(import('@/components/404/PageNotFound'));
+const NotFound = dynamic(import('@/components/404'));
 
 const App = () => {
   const role = useSelector((state) => state.user.role);
