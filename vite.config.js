@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import styleImport, { AntdResolve } from 'vite-plugin-style-import';
-import sizes from 'rollup-plugin-sizes';
+import size from 'rollup-plugin-size';
 import { uglify } from 'rollup-plugin-uglify';
 
 // https://vitejs.dev/config/
@@ -36,11 +36,11 @@ export default defineConfig({
   build: {
     outDir: 'build',
     rollupOptions: {
-      plugins: [uglify(), sizes()],
+      plugins: [uglify(), size()],
       output: {
-        chunkFileNames: 'js/[name]-[hash].js',
-        entryFileNames: 'js/[name]-[hash].js',
-        assetFileNames: '[ext]/[name]-[hash].[ext]',
+        chunkFileNames: 'js/[name]-[format].js',
+        entryFileNames: 'js/[name].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
     terserOptions: {

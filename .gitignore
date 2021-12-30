@@ -7,3 +7,4 @@ server/output
 dist-ssr
 .idea
 *.local
+size-plugin.json
