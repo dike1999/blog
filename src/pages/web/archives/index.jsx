@@ -30,13 +30,11 @@ const Archives = () => {
               {i === 0 && (
                 <Timeline.Item>
                   <span className='desc'>{`Nice! ${pagination.total} posts in total. Keep on posting.`}</span>
-                  <br />
-                  <br />
                 </Timeline.Item>
               )}
 
               <Timeline.Item
-                style={{ height: '36px', marginTop: '20px' }}
+                style={{ height: '36px', marginTop: '16px' }}
                 dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}
                 color='red'
               >

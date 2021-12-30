@@ -10,12 +10,11 @@ import './index.less';
 const TimeLineList = ({ list, name, type }) => (
   <div className='timeline'>
     <Timeline>
-      <Timeline.Item>
+      <Timeline.Item style={{ paddingBottom: '10px' }}>
         <h1 className='list-title'>
           {name}
           <small className='type-name'>{type}</small>
         </h1>
-        <br />
       </Timeline.Item>
       {list.map((item) => (
         <Timeline.Item key={item.id}>
@@ -43,7 +42,7 @@ const List = () => {
 
   return (
     <Spin tip='Loading...' spinning={loading} delay={500}>
-      <div className='app-tags' style={{ paddingTop: '16px' }}>
+      <div className='app-tags' style={{ paddingTop: '20px' }}>
         <TimeLineList list={dataList} name={name} type={type} />
         <Pagination
           {...pagination}
