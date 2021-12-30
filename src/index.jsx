@@ -7,11 +7,10 @@ import store from '@/redux';
 import App from './App';
 import './index.less';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <BusProvider>
     <Provider store={store}>
       <App />
     </Provider>
-  </BusProvider>,
-  document.getElementById('root')
+  </BusProvider>
 );
