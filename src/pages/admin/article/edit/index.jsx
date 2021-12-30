@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FileSyncOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Modal, BackTop, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
+import { FileSyncOutlined, PlusOutlined } from '@/utils/icons';
 import axios from '@/utils/axios';
 import { translateMarkdown } from '@/utils';
 import useBreadcrumb from '@/hooks/useBreadcrumb';

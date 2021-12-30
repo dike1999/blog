@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { Divider, Drawer, Button } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+
+import { MenuOutlined } from '@/utils/icons';
 
 const title = '快速导航';
 const List = ({ list, showTitle = true }) => (

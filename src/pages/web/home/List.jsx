@@ -4,8 +4,8 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { EyeOutlined, CommentOutlined, LikeOutlined } from '@ant-design/icons';
 
+import { EyeOutlined, CommentOutlined, LikeOutlined } from '@/utils/icons';
 import { calcCommentsCount } from '@/utils';
 import ArticleTag from '@/components/ArticleTag';
 

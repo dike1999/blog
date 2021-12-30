@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tag, Divider } from 'antd';
-import { FolderOutlined, TagsFilled } from '@ant-design/icons';
+
+import { FolderOutlined, TagsFilled } from '@/utils/icons';
 
 const getColor = (name, colorList) => {
   const target = colorList.find((c) => c.name === name);

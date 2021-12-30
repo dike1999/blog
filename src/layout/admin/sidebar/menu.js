@@ -4,7 +4,7 @@ import {
   FolderOpenOutlined,
   EditOutlined,
   UserOutlined,
-} from '@ant-design/icons';
+} from '@/utils/icons';
 
 const menu = [
   {

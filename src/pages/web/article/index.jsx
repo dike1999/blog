@@ -8,13 +8,13 @@ import {
   Drawer, Divider, Spin, Button
 } from 'antd';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
+
 import {
   MenuOutlined,
   ReadOutlined,
   EyeOutlined,
   CommentOutlined,
-} from '@ant-design/icons';
-
+} from '@/utils/icons';
 import axios from '@/utils/axios';
 import { translateMarkdown, calcCommentsCount } from '@/utils';
 import useAjaxLoading from '@/hooks/useAjaxLoading';

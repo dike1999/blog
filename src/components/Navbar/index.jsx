@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
+
 import {
   HomeOutlined,
   EditOutlined,
   FolderOutlined,
   UserOutlined,
-} from '@ant-design/icons';
+} from '@/utils/icons';
 
 const navList = [
   {

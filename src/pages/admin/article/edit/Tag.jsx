@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
 import { Input, Tooltip, Tag } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+
+import { PlusOutlined } from '@/utils/icons';
 
 const { CheckableTag } = Tag;
 

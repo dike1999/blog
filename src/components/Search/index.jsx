@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import useMount from '@/hooks/useMount';
+import { SearchOutlined } from '@/utils/icons';
 import { decodeQuery } from '@/utils';
 import './index.less';
 

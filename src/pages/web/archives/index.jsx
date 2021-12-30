@@ -1,9 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Fragment } from 'react';
 import { Timeline, Spin } from 'antd';
-import { ClockCircleOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 
+import { ClockCircleOutlined } from '@/utils/icons';
 import { ARCHIVES_PAGESIZE } from '@/utils/config';
 import { groupBy } from '@/utils';
 import Pagination from '@/components/Pagination';

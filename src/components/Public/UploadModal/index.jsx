@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import {
   Modal, Upload, notification, Tag, Table
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
 
 import { API_BASE_URL } from '@/config';
+import { InboxOutlined } from '@/utils/icons';
 import { getToken } from '@/utils';
 import axios from '@/utils/axios';
 import { useListener } from '@/hooks/useBus';

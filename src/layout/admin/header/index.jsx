@@ -5,8 +5,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 
+import { DownOutlined } from '@/utils/icons';
 import { loginout } from '@/redux/user/actions';
 import './index.less';
 

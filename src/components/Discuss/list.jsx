@@ -5,11 +5,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
 import {
   Comment, Button, Tooltip, Input, Popconfirm, message
 } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+
+import { DeleteOutlined } from '@/utils/icons';
 import axios from '@/utils/axios';
 import { translateMarkdown } from '@/utils';
 import dayjs from '@/utils/dayjs';

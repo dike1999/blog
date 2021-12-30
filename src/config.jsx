@@ -1,5 +1,5 @@
 import React from 'react';
-import { GithubFilled, WechatFilled, QqCircleFilled } from '@ant-design/icons';
+import { GithubFilled, WechatFilled, QqCircleFilled } from '@/utils/icons';
 import MyInfo from '@/components/MyInfo';
 import avatarImg from '@/assets/images/avatar.png';
 import WeChatImg from '@/assets/images/WeChat.png';

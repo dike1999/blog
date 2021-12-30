@@ -13,12 +13,8 @@ import {
   Dropdown,
   message,
 } from 'antd';
-import {
-  GithubFilled,
-  DownOutlined,
-  InfoCircleOutlined,
-} from '@ant-design/icons';
 
+import { GithubFilled, DownOutlined, InfoCircleOutlined } from '@/utils/icons';
 import axios from '@/utils/axios';
 import { calcCommentsCount } from '@/utils';
 import { loginout } from '@/redux/user/actions';

@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import loadable from '@loadable/component';
 import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@/utils/icons';
 
 import PublicComponent from '@/components/Public';
 
