@@ -29,6 +29,54 @@
 - 设备适配 响应式布局 前端代码埋点
 - 前端性能优化方案 遵循雅虎军规35条
 
+### 体积优化
+
+#### ⚡构建时压缩图片
+
+- 每次使用在线服务手动压缩较为麻烦，可以直接在构建流程中加入压缩图片
+- vite-plugin-imagemin 一个压缩图片资产的 vite 插件
+
+``` javascript
+import viteImagemin from 'vite-plugin-imagemin';
+
+export default () => {
+  return {
+    plugins: [
+      viteImagemin({
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false,
+        },
+        optipng: {
+          optimizationLevel: 7,
+        },
+        mozjpeg: {
+          quality: 20,
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox',
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false,
+            },
+          ],
+        },
+      }),
+    ],
+  };
+};
+```
+
+- 图片压缩效果展示
+![图片压缩效果](./src/assets/images/imagemin.jpg)
+
 ### TODO
 
 - 定制暗黑主题+开屏动画

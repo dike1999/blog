@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import styleImport, { AntdResolve } from 'vite-plugin-style-import';
+import viteImagemin from 'vite-plugin-imagemin';
 import size from 'rollup-plugin-size';
 import { uglify } from 'rollup-plugin-uglify';
 
@@ -19,6 +20,33 @@ export default defineConfig({
           resolveStyle: (name) => `antd/es/${name}/style/index`,
         },
       ],
+    }),
+    viteImagemin({
+      gifsicle: {
+        optimizationLevel: 7,
+        interlaced: false,
+      },
+      optipng: {
+        optimizationLevel: 7,
+      },
+      mozjpeg: {
+        optimizationLevel: 20,
+      },
+      pngquant: {
+        quality: [0.8, 0.9],
+        speed: 4,
+      },
+      svgo: {
+        plugins: [
+          {
+            name: 'removeViewBox',
+          },
+          {
+            name: 'removeEmptyAttrs',
+            active: false,
+          },
+        ],
+      },
     }),
   ],
   css: {
