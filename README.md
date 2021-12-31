@@ -94,7 +94,7 @@ export default () => {
 ```
 
 - 图片压缩效果展示
-![图片压缩效果](./src/assets/images/imagemin.jpg)
+![图片压缩效果](./src/assets/images/imagemin.png)
 
 ### 传输优化
 
