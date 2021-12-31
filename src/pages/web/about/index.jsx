@@ -5,6 +5,7 @@ import { Avatar } from 'antd';
 import { SIDEBAR, ABOUT } from '@/config';
 import axios from '@/utils/axios';
 import Discuss from '@/components/Discuss';
+import Head from '@/components/Head';
 import Footer from '@/components/Footer';
 
 const About = () => {
@@ -25,6 +26,7 @@ const About = () => {
       className='app-about'
       style={{ paddingRight: iphoneScreen ? 0 : 20, marginTop: '10px' }}
     >
+      <Head title='关于我' />
       <Avatar src={SIDEBAR.avatar} />
       <span style={{ paddingLeft: 10 }}>{ABOUT.describe}</span>
       {ABOUT.renderMyInfo || null}

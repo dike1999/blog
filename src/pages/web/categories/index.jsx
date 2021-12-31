@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Badge, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 
+import Head from '@/components/Head';
 import './index.less';
 
 const Categories = () => {
@@ -10,6 +11,7 @@ const Categories = () => {
 
   return (
     <div className='app-categories'>
+      <Head title='分类' />
       <h2 className='title'>Categories</h2>
       <p className='category-all-title'>{`${categoryList.length} categories in total`}</p>
 

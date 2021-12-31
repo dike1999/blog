@@ -7,6 +7,7 @@ import { ClockCircleOutlined } from '@/utils/icons';
 import { ARCHIVES_PAGESIZE } from '@/utils/config';
 import { groupBy } from '@/utils';
 import Pagination from '@/components/Pagination';
+import Head from '@/components/Head';
 import useFetchList from '@/hooks/useFetchList';
 import './index.less';
 
@@ -24,6 +25,7 @@ const Archives = () => {
   return (
     <div className='app-archives'>
       <Spin tip='Loading...' spinning={loading} delay={500}>
+        <Head title='归档' />
         <Timeline>
           {list.map((d, i) => (
             <Fragment key={i}>

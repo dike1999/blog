@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { Timeline, Spin } from 'antd';
 
 import { TAG_PAGESIZE } from '@/utils/config';
+import Head from '@/components/Head';
 import Pagination from '@/components/Pagination';
 import useFetchList from '@/hooks/useFetchList';
 import './index.less';
@@ -42,6 +43,7 @@ const List = () => {
 
   return (
     <Spin tip='Loading...' spinning={loading} delay={500}>
+      <Head title={name} />
       <div className='app-tags' style={{ paddingTop: '20px' }}>
         <TimeLineList list={dataList} name={name} type={type} />
         <Pagination

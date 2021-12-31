@@ -13,6 +13,7 @@ export const ONLINE_TIME = '2021-04-30';
 
 // project config
 export const HEADER_BLOG_NAME = 'CoderDi'; // header title 显示的名字
+export const HEADER_TITLE = 'CoderDi的博客'; // title
 // === sidebar
 export const SIDEBAR = {
   avatar: avatarImg, // 侧边栏头像

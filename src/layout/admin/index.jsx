@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 
+import Head from '@/components/Head';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdminSideBar from './sidebar';
 import AdminHeader from './header';
@@ -28,6 +29,7 @@ const AdminLayout = () => {
         <Layout className='admin-content-wrap'>
           <Breadcrumb />
           <Content className='admin-content'>
+            <Head title='CoderDi-博客后台管理系统' usePrefix={false} />
             <Outlet />
           </Content>
         </Layout>

@@ -20,6 +20,7 @@ import { translateMarkdown, calcCommentsCount } from '@/utils';
 import useAjaxLoading from '@/hooks/useAjaxLoading';
 import ArticleTag from '@/components/ArticleTag';
 import Discuss from '@/components/Discuss';
+import Head from '@/components/Head';
 import Footer from '@/components/Footer';
 import Navigation from './Navigation';
 import './index.less';
@@ -71,6 +72,7 @@ const Article = () => {
   const isFoldNavigation = useMediaQuery({ query: '(max-width: 1300px)' });
   return (
     <Spin tip='Loading...' spinning={loading}>
+      <Head title={`博客-${title}`} usePrefix={false} />
       <article
         className='app-article'
         style={{ paddingRight: isFoldNavigation ? 0 : 275 }}

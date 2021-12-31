@@ -7,6 +7,7 @@ import { decodeQuery, translateMarkdown } from '@/utils';
 import { HOME_PAGESIZE } from '@/utils/config';
 import Pagination from '@/components/Pagination';
 import Footer from '@/components/Footer';
+import Head from '@/components/Head';
 import useFetchList from '@/hooks/useFetchList';
 import QuickLink from './QuickLink';
 import ArticleList from './List';
@@ -37,6 +38,7 @@ const Home = () => {
 
   return (
     <Spin tip='Loading...' spinning={loading}>
+      <Head title='首页' />
       <div className='app-home'>
         {/* list  */}
         <ArticleList list={list} />
