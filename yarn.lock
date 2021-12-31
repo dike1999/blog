@@ -846,15 +846,16 @@ bin-version@^3.0.0:
     execa "^1.0.0"
     find-versions "^3.0.0"
 
-bin-wrapper@^4.0.0, bin-wrapper@^4.0.1:
-  version "4.1.0"
-  resolved "https://registry.nlark.com/bin-wrapper/download/bin-wrapper-4.1.0.tgz#99348f2cf85031e3ef7efce7e5300aeaae960605"
-  integrity sha1-mTSPLPhQMePvfvzn5TAK6q6WBgU=
+bin-wrapper@^4.0.0, bin-wrapper@^4.0.1, "bin-wrapper@npm:bin-wrapper-china":
+  version "0.1.0"
+  resolved "https://registry.nlark.com/bin-wrapper-china/download/bin-wrapper-china-0.1.0.tgz#c2ec95b4d0eaef6ed5ad10954f9227d8e5ef3725"
+  integrity sha1-wuyVtNDq727VrRCVT5In2OXvNyU=
   dependencies:
     bin-check "^4.1.0"
     bin-version-check "^4.0.0"
+    binary-mirror-config "^1"
     download "^7.1.0"
-    import-lazy "^3.1.0"
+    import-lazy "^4.0.0"
     os-filter-obj "^2.0.0"
     pify "^4.0.1"
 
@@ -862,6 +863,11 @@ binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.nlark.com/binary-extensions/download/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha1-dfUC7q+f/eQvyYgpZFvk6na9ni0=
+
+binary-mirror-config@^1:
+  version "1.34.0"
+  resolved "https://registry.npmmirror.com/binary-mirror-config/download/binary-mirror-config-1.34.0.tgz#deed739a10f161523590e3395abf1c58031e479b"
+  integrity sha512-EGn/L4iVcWohGu5GE7GDe6ZrcNWmCFhMqj+h7D7aVmN1+dKuHjSrD/QIal6/1l4tdBv5iVR5NFBIPqf+NZM25A==
 
 bl@^1.0.0:
   version "1.2.3"
@@ -2917,11 +2923,6 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
   dependencies:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
-
-import-lazy@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.nlark.com/import-lazy/download/import-lazy-3.1.0.tgz#891279202c8a2280fdbd6674dbd8da1a1dfc67cc"
-  integrity sha1-iRJ5ICyKIoD9vWZ029jaGh38Z8w=
 
 import-lazy@^4.0.0:
   version "4.0.0"

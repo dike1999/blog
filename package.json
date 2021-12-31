@@ -9,6 +9,9 @@
     "lint:style": "stylelint src/**/*.{css,scss,sass,less}",
     "lint:fix": "stylelint --fix src/**/*.{css,scss,sass,less}"
   },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@loadable/component": "^5.15.2",
