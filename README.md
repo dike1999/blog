@@ -3,6 +3,25 @@
 - 该博客基于 Vite2 + React [Vite 官方中文文档](https://cn.vitejs.dev/).
 - 构建过程可以通过 build.rollupOptions 直接调整底层的 [Rollup 选项](https://rollupjs.org/guide/zh/)
 
+## 执行脚本
+
+在项目目录中，您可以运行：
+
+### 初始化项目 `yarn`
+
+- 安装项目运行所需依赖
+
+### 启动React项目 `yarn start`
+
+- 在开发模式下运行应用程序
+- 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
+
+### 构建生产版本 `yarn build`
+
+- 当需要将应用部署到生产环境时，只需运行 vite build 命令。
+- 默认情况下，它使用 <root>/index.html 作为其构建入口点，并生成能够静态部署的应用程序包。
+- 请查阅 [部署静态站点](https://cn.vitejs.dev/guide/static-deploy.html) 获取常见服务的部署指引。
+
 ## 项目使用说明
 
 - 源码: [https://github.com/dike1999/blog](https://github.com/dike1999/blog)
@@ -77,30 +96,38 @@ export default () => {
 - 图片压缩效果展示
 ![图片压缩效果](./src/assets/images/imagemin.jpg)
 
+### 传输优化
+
+#### ⚡Gzip压缩传输
+
+- Gzip压缩是一种强力压缩手段，针对文本文件时通常能减少2/3的体积。
+- HTTP协议中用头部字段 **Accept-Encoding** 和 **Content-Encoding** 对「采用何种编码格式传输正文」进行了协定，请求头的 **Accept-Encoding** 会列出客户端支持的编码格式。当响应头的  **Content-Encoding** 指定了gzip时，浏览器则会进行对应解压
+- 一般浏览器都支持gzip，所以 **Accept-Encoding** 也会自动带上 **gzip** ，所以我们需要让资源服务器在 **Content-Encoding** 指定 gzip，并返回gzip文件
+- Nginx配置Gzip
+
+``` shell
+#开启和关闭gzip模式
+gzip on;
+#gizp压缩起点，文件大于1k才进行压缩
+gzip_min_length 1k;
+# gzip 压缩级别，1-9，数字越大压缩的越好，也越占用CPU时间
+gzip_comp_level 6;
+# 进行压缩的文件类型。
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript ;
+# nginx对于静态文件的处理模块，开启后会寻找以.gz结尾的文件，直接返回，不会占用cpu进行压缩，如果找不到则不进行压缩
+gzip_static on
+# 是否在http header中添加Vary: Accept-Encoding，建议开启
+gzip_vary on;
+# 设置gzip压缩针对的HTTP协议版本
+gzip_http_version 1.1;
+```
+
+
 ### TODO
 
 - 定制暗黑主题+开屏动画
 - 点赞功能(根据IP、访客点赞)
 - 服务器端渲染SSR
-
-## 执行脚本
-
-在项目目录中，您可以运行：
-
-### 初始化项目 `yarn`
-
-- 安装项目运行所需依赖
-
-### 启动React项目 `yarn start`
-
-- 在开发模式下运行应用程序
-- 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
-
-### 构建生产版本 `yarn build`
-
-- 当需要将应用部署到生产环境时，只需运行 vite build 命令。
-- 默认情况下，它使用 <root>/index.html 作为其构建入口点，并生成能够静态部署的应用程序包。
-- 请查阅 [部署静态站点](https://cn.vitejs.dev/guide/static-deploy.html) 获取常见服务的部署指引。
 
 ### 关于prettier
 
