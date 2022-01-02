@@ -72,7 +72,7 @@ const Article = () => {
   const isFoldNavigation = useMediaQuery({ query: '(max-width: 1300px)' });
   return (
     <Spin tip='Loading...' spinning={loading}>
-      <Head title={`博客-${title}`} usePrefix={false} />
+      <Head title={`文章-${title}`} usePrefix={false} />
       <article
         className='app-article'
         style={{ paddingRight: isFoldNavigation ? 0 : 275 }}
