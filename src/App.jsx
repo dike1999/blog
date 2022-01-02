@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable no-param-reassign */
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import loadable from '@loadable/component';
 import { Spin } from 'antd';
@@ -44,7 +44,7 @@ const App = () => {
   const role = useSelector((state) => state.user.role);
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path='/' key='/' element={<LayoutWeb />}>
           <Route index exact element={<Home />} />
@@ -117,7 +117,7 @@ const App = () => {
         </Route>
       </Routes>
       <PublicComponent />
-    </BrowserRouter>
+    </>
   );
 };
 
