@@ -65,7 +65,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     rollupOptions: {
       plugins: [uglify(), size()],
       output: {
