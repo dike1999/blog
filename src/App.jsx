@@ -6,9 +6,10 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import loadable from '@loadable/component';
 import { Spin } from 'antd';
-import { LoadingOutlined } from '@/utils/icons';
 
+import { LoadingOutlined } from '@/utils/icons';
 import PublicComponent from '@/components/Public';
+import './app.less';
 
 // lazy load component
 const dynamic = (impoter) => {
@@ -43,79 +44,73 @@ const NotFound = dynamic(import('@/components/404'));
 const App = () => {
   const role = useSelector((state) => state.user.role);
 
+  const renderRoutes = () => (
+    <Routes>
+      <Route path='/' key='/' element={<LayoutWeb />}>
+        <Route index exact element={<Home />} />
+        <Route
+          path='/article/:id'
+          key='/article/:id'
+          exact
+          element={<Article />}
+        />
+        <Route path='/archives' key='/archives' exact element={<Archives />} />
+        <Route
+          path='/categories'
+          key='/categories'
+          exact
+          element={<Categories />}
+        />
+        <Route
+          path='/categories/:name'
+          key='/categories/:name'
+          exact
+          element={<Tags />}
+        />
+        <Route path='/tags/:name' key='/tags/:name' exact element={<Tags />} />
+        <Route path='/about' key='/about' exact element={<About />} />
+        <Route path='/*' key='/*' exact element={<NotFound />} />
+      </Route>
+
+      <Route path='/admin' key='/admin' element={<LayoutAdmin />}>
+        {role !== 1 ? (
+          <Route path='/admin/*' index element={<Navigate to='/' />} />
+        ) : (
+          <>
+            <Route index exact element={<AdminHome />} />
+            <Route
+              path='/admin/article/manager'
+              key='/admin/article/manager'
+              exact
+              element={<Manager />}
+            />
+            <Route
+              path='/admin/article/edit/:id'
+              key='/admin/article/edit/:id'
+              exact
+              element={<Edit />}
+            />
+            <Route
+              path='/admin/article/add'
+              key='/admin/article/add'
+              exact
+              element={<Edit />}
+            />
+            <Route
+              path='/admin/user'
+              key='/admin/user'
+              exact
+              element={<User />}
+            />
+          </>
+        )}
+      </Route>
+    </Routes>
+  );
+
   return (
     <>
-      <Routes>
-        <Route path='/' key='/' element={<LayoutWeb />}>
-          <Route index exact element={<Home />} />
-          <Route
-            path='/article/:id'
-            key='/article/:id'
-            exact
-            element={<Article />}
-          />
-          <Route
-            path='/archives'
-            key='/archives'
-            exact
-            element={<Archives />}
-          />
-          <Route
-            path='/categories'
-            key='/categories'
-            exact
-            element={<Categories />}
-          />
-          <Route
-            path='/categories/:name'
-            key='/categories/:name'
-            exact
-            element={<Tags />}
-          />
-          <Route
-            path='/tags/:name'
-            key='/tags/:name'
-            exact
-            element={<Tags />}
-          />
-          <Route path='/about' key='/about' exact element={<About />} />
-          <Route path='/*' key='/*' exact element={<NotFound />} />
-        </Route>
-
-        <Route path='/admin' key='/admin' element={<LayoutAdmin />}>
-          {role !== 1 ? (
-            <Route path='/admin/*' index element={<Navigate to='/' />} />
-          ) : (
-            <>
-              <Route index exact element={<AdminHome />} />
-              <Route
-                path='/admin/article/manager'
-                key='/admin/article/manager'
-                exact
-                element={<Manager />}
-              />
-              <Route
-                path='/admin/article/edit/:id'
-                key='/admin/article/edit/:id'
-                exact
-                element={<Edit />}
-              />
-              <Route
-                path='/admin/article/add'
-                key='/admin/article/add'
-                exact
-                element={<Edit />}
-              />
-              <Route
-                path='/admin/user'
-                key='/admin/user'
-                exact
-                element={<User />}
-              />
-            </>
-          )}
-        </Route>
-      </Routes>
+      {renderRoutes()}
       <PublicComponent />
     </>
   );
