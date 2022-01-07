@@ -29,7 +29,7 @@ module.exports = (sequelize, dataTypes) => {
       role: {
         type: dataTypes.TINYINT,
         defaultValue: 2,
-        comment: '用户权限：1 - admin, 2 - 普通用户',
+        comment: '用户权限: 1 - admin, 2 - 普通用户',
       },
       github: {
         type: dataTypes.TEXT, // github 登录用户 直接绑定在 user 表

@@ -40,18 +40,18 @@ service.interceptors.response.use(
         switch (status) {
           case 401:
             message.error(
-              (data && data.message) || '登录信息过期或未授权，请重新登录！'
+              (data && data.message) || '登录信息过期或未授权，请重新登录!'
             );
             break;
 
           default:
-            message.error(data.message || `连接错误 ${status}！`);
+            message.error(data.message || `连接错误 ${status}!`);
             break;
         }
       } else {
         message.error(err.message);
       }
-    }, 200); // 200 毫秒内重复报错则只提示一次！
+    }, 200); // 200 毫秒内重复报错则只提示一次!
 
     return Promise.reject(err);
   }

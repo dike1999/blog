@@ -12,7 +12,7 @@ export const login = (params) => (dispatch) => axios.post('/login', params).then
 });
 
 export const register = (params) => () => axios.post('/register', params).then(() => {
-  message.success('注册成功，请重新登录您的账号！');
+  message.success('注册成功，请重新登录您的账号!');
 });
 
 export const loginout = () => ({

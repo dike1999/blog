@@ -70,7 +70,7 @@ const Edit = () => {
 
   // eslint-disable-next-line consistent-return
   const add = () => {
-    if (!title) return message.warning('标题不能为空！');
+    if (!title) return message.warning('标题不能为空!');
     axios
       .post('/article', {
         title,
@@ -81,7 +81,7 @@ const Edit = () => {
       })
       .then((res) => {
         Modal.confirm({
-          title: '文章创建成功！是否立即查看？',
+          title: '文章创建成功! 是否立即查看?',
           onOk: () => navigate(`/article/${res.id}`),
         });
       });
@@ -104,7 +104,7 @@ const Edit = () => {
     <div className='admin-edit-article'>
       <ul className='form-list'>
         <li>
-          <span className='label'>标题：</span>
+          <span className='label'>标题: </span>
           <span style={{ flex: 1 }}>
             <Input
               placeholder='请输入文章标题'
@@ -118,7 +118,7 @@ const Edit = () => {
           </span>
         </li>
         <li>
-          <span className='label'>标签：</span>
+          <span className='label'>标签: </span>
           <span>
             <List
               list={tagList}
@@ -129,7 +129,7 @@ const Edit = () => {
           </span>
         </li>
         <li>
-          <span className='label'>分类：</span>
+          <span className='label'>分类: </span>
           <span>
             <List
               list={categoryList}

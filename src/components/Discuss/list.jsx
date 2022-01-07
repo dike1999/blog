@@ -92,7 +92,7 @@ const CommentItem = ({
         <>
           {userInfo.role === 1 && (
             <Popconfirm
-              title='是否删除该留言？'
+              title='是否删除该留言?'
               cancelText='取消'
               okText='确认'
               onConfirm={onDelete}

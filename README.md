@@ -5,7 +5,7 @@
 
 ## 执行脚本
 
-在项目目录中，您可以运行：
+在项目目录中，您可以运行:
 
 ### 初始化项目 `yarn`
 
@@ -122,7 +122,6 @@ gzip_vary on;
 gzip_http_version 1.1;
 ```
 
-
 ### TODO
 
 - 定制暗黑主题+开屏动画
@@ -139,7 +138,7 @@ gzip_http_version 1.1;
 
 - 安装`commitlint`
 
-```
+```shell
 yarn add @commitlint/cli @commitlint/config-conventional --dev
 ```
 
@@ -155,12 +154,12 @@ yarn add @commitlint/cli @commitlint/config-conventional --dev
 
 - 添加Git Hooks。Git Commit 消息规则请参考: [CommitLint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional)
 
-```
+```shell
 npx husky add configs/husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
 
 - 提交一个commit示例
 
-```
+```shell
 git commit -m "fix: 处理了某个BUG"
 ```

@@ -71,7 +71,7 @@ function decodeFile(filePath) {
         // 转化 value
         if (['title', 'date'].includes(key)) {
           if (key === 'title') {
-            valueArr[0] = valueArr[0].replace(/^(\s|[,'"])+|(\s|[,'"])+$/g, ''); // 可能出现 title： ‘xxx’ 的情况 需要除去 ‘’
+            valueArr[0] = valueArr[0].replace(/^(\s|[,'"])+|(\s|[,'"])+$/g, ''); // 可能出现 title: ‘xxx’ 的情况 需要除去 ‘’
           }
           result[key] = valueArr[0];
         } else if (['tags', 'categories'].includes(key)) {
