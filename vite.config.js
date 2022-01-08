@@ -5,6 +5,7 @@ import path from 'path';
 import styleImport, { AntdResolve } from 'vite-plugin-style-import';
 import viteImagemin from 'vite-plugin-imagemin';
 import size from 'rollup-plugin-size';
+import sizes from 'rollup-plugin-sizes';
 import { uglify } from 'rollup-plugin-uglify';
 
 // https://vitejs.dev/config/
@@ -67,7 +68,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      plugins: [uglify(), size()],
+      plugins: [uglify(), size(), sizes()],
       output: {
         chunkFileNames: 'js/[name]-[format].js',
         entryFileNames: 'js/[name].js',
