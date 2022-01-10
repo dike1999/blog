@@ -3,7 +3,6 @@ import { Divider, Rate } from 'antd';
 
 import { QqOutlined, MailFilled } from '@/utils/icons';
 import Href from '@/components/Href';
-import './index.less';
 
 const skills = [
   {
@@ -35,7 +34,7 @@ const MyInfo = () => (
     <p>本博客使用的技术为 React + Antd + Koa2 + Mysql</p>
     <Divider orientation='left'>关于我</Divider>
 
-    <ul className='aboutList'>
+    <ul style={{ marginLeft: '20px', listStyle: 'circle' }}>
       <li>姓名: 狄克</li>
       <li>学校: 成都信息工程大学</li>
       <li>学历专业: 本科 软件工程</li>

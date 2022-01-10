@@ -11,7 +11,7 @@ import axios from '@/utils/axios';
 import { translateMarkdown } from '@/utils';
 import useBreadcrumb from '@/hooks/useBreadcrumb';
 import List from './Tag';
-import './index.less';
+import styles from './index.module.less';
 
 const Edit = () => {
   const params = useParams();
@@ -101,14 +101,13 @@ const Edit = () => {
   };
 
   return (
-    <div className='admin-edit-article'>
-      <ul className='form-list'>
+    <div className={styles.adminEditArticle}>
+      <ul className={styles.formList}>
         <li>
-          <span className='label'>标题: </span>
+          <span className={styles.label}>标题: </span>
           <span style={{ flex: 1 }}>
             <Input
               placeholder='请输入文章标题'
-              className='title-input'
               name='title'
               value={title}
               onChange={(e) => {
@@ -118,7 +117,7 @@ const Edit = () => {
           </span>
         </li>
         <li>
-          <span className='label'>标签: </span>
+          <span className={styles.label}>标签: </span>
           <span>
             <List
               list={tagList}
@@ -129,7 +128,7 @@ const Edit = () => {
           </span>
         </li>
         <li>
-          <span className='label'>分类: </span>
+          <span className={styles.label}>分类: </span>
           <span>
             <List
               list={categoryList}
@@ -154,7 +153,7 @@ const Edit = () => {
         shape='circle'
         size='large'
         disabled={!title}
-        className='action-icon'
+        className={styles.actionIcon}
         title={editId ? '更新' : '新增'}
         icon={editId ? <FileSyncOutlined /> : <PlusOutlined />}
         onClick={() => {

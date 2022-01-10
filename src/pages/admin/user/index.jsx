@@ -17,7 +17,7 @@ import dayjs from '@/utils/dayjs';
 import DatePicker from '@/components/DatePicker/index';
 import useAntdTable from '@/hooks/useAntdTable';
 import useBreadcrumb from '@/hooks/useBreadcrumb';
-import './index.less';
+import styles from './index.module.less';
 
 const typeMapList = [
   { value: 1, label: 'github 用户' },
@@ -76,7 +76,7 @@ const AdminUser = () => {
             title='Are you sure?'
             onConfirm={() => updateList(() => axios.delete(`/user/${userId}`))}
           >
-            <a className='delete-text'>Delete</a>
+            <a className={styles.deleteText}>Delete</a>
           </Popconfirm>
         ),
       },

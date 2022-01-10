@@ -21,7 +21,7 @@ import dayjs from '@/utils/dayjs';
 import download from '@/utils/download';
 import useAntdTable from '@/hooks/useAntdTable';
 import useBreadcrumb from '@/hooks/useBreadcrumb';
-import './index.less';
+import styles from './index.module.less';
 
 const ArticleManager = () => {
   const [form] = Form.useForm();
@@ -89,7 +89,7 @@ const ArticleManager = () => {
         dataIndex: 'id',
         title: '操作',
         render: (articleId, record) => (
-          <ul className='action-list'>
+          <ul className={styles.actionList}>
             <li>
               <Link to={`/article/${articleId}`}>查看</Link>
             </li>
@@ -112,7 +112,7 @@ const ArticleManager = () => {
                 cancelText='No'
                 onConfirm={() => updateList(() => axios.delete(`/article/${articleId}`))}
               >
-                <a className='delete-text'>删除</a>
+                <a className={styles.deleteText}>删除</a>
               </Popconfirm>
             </li>
           </ul>
@@ -149,7 +149,7 @@ const ArticleManager = () => {
   };
 
   return (
-    <div className='admin-article-manager'>
+    <>
       {/* 检索 */}
       <Form
         form={form}
@@ -230,7 +230,7 @@ const ArticleManager = () => {
           </>
         )}
       />
-    </div>
+    </>
   );
 };
 

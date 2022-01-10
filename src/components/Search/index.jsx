@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useMount from '@/hooks/useMount';
 import { SearchOutlined } from '@/utils/icons';
 import { decodeQuery } from '@/utils';
-import './index.less';
+import styles from './index.module.less';
 
 const SearchButton = () => {
   const navigate = useNavigate();
@@ -32,15 +32,15 @@ const SearchButton = () => {
   };
 
   return (
-    <div id='search-box'>
-      <SearchOutlined className='search-icon' />
+    <div className={styles.searchBox}>
+      <SearchOutlined className={styles.searchIcon} />
       <Input
         type='text'
         value={keyword}
         onChange={handleChange}
         onBlur={handleSubmit}
         onPressEnter={handlePressEnter}
-        className='search-input'
+        className={styles.searchInput}
         placeholder='搜索文章'
         style={{ width: 200 }}
       />

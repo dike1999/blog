@@ -15,7 +15,7 @@ import { getToken } from '@/utils';
 import axios from '@/utils/axios';
 import { useListener } from '@/hooks/useBus';
 import useBoolean from '@/hooks/useBoolean';
-import './index.less';
+import styles from './index.module.less';
 
 const UploadModal = () => {
   const authorId = useSelector((state) => state.user.userId);
@@ -56,7 +56,7 @@ const UploadModal = () => {
       title: '操作',
       render: (uid) => (
         <a
-          className='delete-text'
+          className={styles.deleteText}
           onClick={() => {
             const index = fileList.findIndex((file) => file.uid === uid);
             fileList.splice(index, 1);

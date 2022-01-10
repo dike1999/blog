@@ -4,7 +4,7 @@ import { Avatar, Popover } from 'antd';
 
 import { DISCUSS_AVATAR } from '@/config';
 import Href from '@/components/Href';
-import './index.less';
+import styles from './index.module.less';
 
 const AvatarComponent = ({ username, github, role }) => {
   let avatarSrc = '';
@@ -20,14 +20,13 @@ const AppAvatar = ({ userInfo, popoverVisible }) => {
     return (
       <Popover
         arrowPointAtCenter
-        overlayClassName='avatar-popover'
         trigger='hover'
         placement='topLeft'
         content={(
-          <div className='popover-content'>
+          <div className={styles.popoverContent}>
             <Href
               href={github.html_url}
-              className='popover-cotent-avatar'
+              className={styles.popoverContentAvatar}
               extra={(
                 <AvatarComponent
                   role={role}
@@ -36,10 +35,10 @@ const AppAvatar = ({ userInfo, popoverVisible }) => {
                 />
               )}
             />
-            <ul className='github-info'>
+            <ul className={styles.githubInfo}>
               <li>
                 {github.name && (
-                  <span className='github-name'>{github.name}</span>
+                  <span className={styles.githubName}>{github.name}</span>
                 )}
               </li>
             </ul>

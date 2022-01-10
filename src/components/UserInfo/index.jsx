@@ -8,7 +8,6 @@ import { Button, Dropdown, Menu } from 'antd';
 import { loginout } from '@/redux/user/actions';
 import AppAvatar from '@/components/Avatar';
 import useBus from '@/hooks/useBus';
-import './index.less';
 
 const UserInfo = () => {
   const navigate = useNavigate();
@@ -36,7 +35,7 @@ const UserInfo = () => {
   );
 
   return (
-    <div className='header-userInfo'>
+    <div style={{ float: 'right', padding: '0 40px 0 16px' }}>
       {username ? (
         <Dropdown
           placement='bottomCenter'
