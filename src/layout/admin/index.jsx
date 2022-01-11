@@ -6,7 +6,7 @@ import Head from '@/components/Head';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdminSideBar from './sidebar';
 import AdminHeader from './header';
-import './index.less';
+import styles from './index.module.less';
 
 const { Sider, Header, Content } = Layout;
 
@@ -14,21 +14,21 @@ const AdminLayout = () => {
   const location = useLocation();
 
   return (
-    <Layout className='admin-container'>
+    <Layout className={styles.adminContainer}>
       <Header
-        className='admin-header'
+        className={styles.header}
         style={{ height: '48px', lineHeight: '48px' }}
       >
         <AdminHeader />
       </Header>
 
       <Layout>
-        <Sider width={200} className='admin-sider'>
+        <Sider width={200} className={styles.sider}>
           <AdminSideBar selectedKeys={[location.pathname]} />
         </Sider>
-        <Layout className='admin-content-wrap'>
+        <Layout className={styles.contentWrap}>
           <Breadcrumb />
-          <Content className='admin-content'>
+          <Content className={styles.content}>
             <Head title='CoderDi-博客后台管理系统' usePrefix={false} />
             <Outlet />
           </Content>

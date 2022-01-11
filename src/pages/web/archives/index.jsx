@@ -9,7 +9,7 @@ import { groupBy } from '@/utils';
 import Pagination from '@/components/Pagination';
 import Head from '@/components/Head';
 import useFetchList from '@/hooks/useFetchList';
-import './index.less';
+import styles from './index.module.less';
 
 const Archives = () => {
   const { pathname, search } = useLocation();
@@ -23,7 +23,7 @@ const Archives = () => {
 
   const list = groupBy(dataList, (item) => item.createdAt.slice(0, 7)); // 按年份排序
   return (
-    <div className='app-archives'>
+    <div className='app-archives' style={{ padding: '40px 20px' }}>
       <Spin tip='Loading...' spinning={loading} delay={500}>
         <Head title='归档' />
         <Timeline>
@@ -31,7 +31,7 @@ const Archives = () => {
             <Fragment key={i}>
               {i === 0 && (
                 <Timeline.Item>
-                  <span className='desc'>{`Nice! ${pagination.total} posts in total. Keep on posting.`}</span>
+                  <span className={styles.desc}>{`Nice! ${pagination.total} posts in total. Keep on posting.`}</span>
                 </Timeline.Item>
               )}
 
@@ -40,7 +40,7 @@ const Archives = () => {
                 dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}
                 color='red'
               >
-                <div className='month'>{d[0].createdAt.slice(0, 7)}</div>
+                <div className={styles.month}>{d[0].createdAt.slice(0, 7)}</div>
                 <br />
               </Timeline.Item>
 

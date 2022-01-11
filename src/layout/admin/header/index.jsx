@@ -8,7 +8,7 @@ import { Dropdown, Menu } from 'antd';
 
 import { DownOutlined } from '@/utils/icons';
 import { loginout } from '@/redux/user/actions';
-import './index.less';
+import styles from './index.module.less';
 
 const AdminHeader = () => {
   const dispatch = useDispatch();
@@ -36,8 +36,8 @@ const AdminHeader = () => {
 
   return (
     <div>
-      <span className='header-title'>博客后台管理系统</span>
-      <Dropdown overlay={menu} className='header-dropdown'>
+      <span className={styles.title}>博客后台管理系统</span>
+      <Dropdown overlay={menu} className={styles.dropdown}>
         <a className='ant-dropdown-link'>
           {userInfo.username}
           &nbsp;

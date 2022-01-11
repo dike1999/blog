@@ -4,7 +4,7 @@ import { Badge, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 
 import Head from '@/components/Head';
-import './index.less';
+import styles from './index.module.less';
 
 const Categories = () => {
   const categoryList = useSelector((state) => state.article.categoryList);
@@ -12,10 +12,10 @@ const Categories = () => {
   return (
     <div className='app-categories'>
       <Head title='分类' />
-      <h2 className='title'>Categories</h2>
-      <p className='category-all-title'>{`${categoryList.length} categories in total`}</p>
+      <h2 className={styles.title}>Categories</h2>
+      <p className={styles.categoryAllTitle}>{`${categoryList.length} categories in total`}</p>
 
-      <div className='categories-list'>
+      <div className={styles.categoriesList}>
         {categoryList.map((item) => (
           <Badge count={item.count} key={item.name}>
             <Tag color={item.color}>

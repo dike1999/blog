@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { Timeline, Spin } from 'antd';
+import classes from 'classnames';
 
 import { TAG_PAGESIZE } from '@/utils/config';
 import Head from '@/components/Head';
 import Pagination from '@/components/Pagination';
 import useFetchList from '@/hooks/useFetchList';
-import './index.less';
+import styles from './index.module.less';
 
 const TimeLineList = ({ list, name, type }) => (
-  <div className='timeline'>
+  <div className={styles.timeline}>
     <Timeline>
       <Timeline.Item style={{ paddingBottom: '10px' }}>
-        <h1 className='list-title'>
+        <h1 className={styles.listTitle}>
           {name}
-          <small className='type-name'>{type}</small>
+          <small className={styles.typeName}>{type}</small>
         </h1>
       </Timeline.Item>
       {list.map((item) => (
@@ -44,7 +45,7 @@ const List = () => {
   return (
     <Spin tip='Loading...' spinning={loading} delay={500}>
       <Head title={name} />
-      <div className='app-tags' style={{ paddingTop: '20px' }}>
+      <div className={classes(styles.appTags, 'app-tags')} style={{ paddingTop: '20px' }}>
         <TimeLineList list={dataList} name={name} type={type} />
         <Pagination
           {...pagination}
