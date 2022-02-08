@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Input, Modal, BackTop, message } from 'antd';
+import { Button, Input, Modal, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
@@ -161,7 +161,6 @@ const Edit = () => {
           editId ? update() : add();
         }}
       />
-      <BackTop target={() => document.querySelector('.admin-content-wrap')} />
     </div>
   );
 };
