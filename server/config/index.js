@@ -24,7 +24,7 @@ const config = {
     },
     subject: 'CoderDi的博客 - 您的评论获得新的回复!', // 主题
     text: '您的评论获得新的回复!',
-    WEB_HOST: 'http://101.201.140.172', // email callback url
+    WEB_HOST: 'http://blog.coderdi.top/', // email callback url
   },
   TOKEN: {
     secret: 'di-test', // secret is very important!
