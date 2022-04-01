@@ -3,7 +3,6 @@ import { Divider, Rate, Image } from 'antd';
 
 import { QqOutlined, MailFilled } from '@/utils/icons';
 import Href from '@/components/Href';
-import CV from '@/assets/images/cv.png';
 
 const skills = [
   {
@@ -35,11 +34,6 @@ const MyInfo = () => (
     <p>本博客使用的技术为 React + Antd + Koa2 + Mysql</p>
     <Divider orientation='left'>关于我</Divider>
 
-    <Image
-      width='100%'
-      src={CV}
-      alt='个人简历图片'
-    />
     <ul style={{ marginLeft: '20px', listStyle: 'circle' }}>
       <li>姓名: 狄克</li>
       <li>学校: 成都信息工程大学</li>
