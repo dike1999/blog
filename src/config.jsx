@@ -52,3 +52,8 @@ export const ANNOUNCEMENT = {
   enable: false, // 是否开启
   content: <>个人博客</>,
 };
+
+// pageSize
+export const ARCHIVES_PAGESIZE = 15; // archives pageSize
+export const TAG_PAGESIZE = 15; // tag / category pageSize
+export const HOME_PAGESIZE = 10; // home pageSize

@@ -8,7 +8,6 @@
 import { marked } from 'marked';
 import Prismjs from 'prismjs';
 import xss from 'xss';
-import { COLOR_LIST } from '@/utils/config';
 import { get } from '@/utils/storage';
 
 // 转化 md 语法为 html
@@ -108,7 +107,22 @@ export function debounce(func, wait) {
 }
 
 // 生成 color
-export function genertorColor(list = [], colorList = COLOR_LIST) {
+export function genertorColor(
+  list = [],
+  colorList = [
+    'magenta',
+    'blue',
+    'red',
+    'volcano',
+    'orange',
+    'gold',
+    'lime',
+    'green',
+    'cyan',
+    'geekblue',
+    'purple',
+  ]
+) {
   const _list = [...list];
   _list.forEach((l, i) => {
     l.color = colorList[i] || colorList[randomIndex(colorList)];

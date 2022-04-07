@@ -4,7 +4,7 @@ import { Timeline, Spin } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 
 import { ClockCircleOutlined } from '@/utils/icons';
-import { ARCHIVES_PAGESIZE } from '@/utils/config';
+import { ARCHIVES_PAGESIZE } from '@/config';
 import { groupBy } from '@/utils';
 import Pagination from '@/components/Pagination';
 import Head from '@/components/Head';
@@ -31,7 +31,11 @@ const Archives = () => {
             <Fragment key={i}>
               {i === 0 && (
                 <Timeline.Item>
-                  <span className={styles.desc}>{`Nice! ${pagination.total} posts in total. Keep on posting.`}</span>
+                  <span
+                    className={styles.desc}
+                  >
+                    {`Nice! ${pagination.total} posts in total. Keep on posting.`}
+                  </span>
                 </Timeline.Item>
               )}
 

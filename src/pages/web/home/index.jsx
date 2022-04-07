@@ -4,7 +4,7 @@ import { Empty, Spin } from 'antd';
 import { useLocation } from 'react-router-dom';
 
 import { decodeQuery, translateMarkdown } from '@/utils';
-import { HOME_PAGESIZE } from '@/utils/config';
+import { HOME_PAGESIZE } from '@/config';
 import Pagination from '@/components/Pagination';
 import Footer from '@/components/Footer';
 import Head from '@/components/Head';

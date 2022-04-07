@@ -3,7 +3,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { Timeline, Spin } from 'antd';
 import classes from 'classnames';
 
-import { TAG_PAGESIZE } from '@/utils/config';
+import { TAG_PAGESIZE } from '@/config';
 import Head from '@/components/Head';
 import Pagination from '@/components/Pagination';
 import useFetchList from '@/hooks/useFetchList';
@@ -45,7 +45,10 @@ const List = () => {
   return (
     <Spin tip='Loading...' spinning={loading} delay={500}>
       <Head title={name} />
-      <div className={classes(styles.appTags, 'app-tags')} style={{ paddingTop: '20px' }}>
+      <div
+        className={classes(styles.appTags, 'app-tags')}
+        style={{ paddingTop: '20px' }}
+      >
         <TimeLineList list={dataList} name={name} type={type} />
         <Pagination
           {...pagination}
