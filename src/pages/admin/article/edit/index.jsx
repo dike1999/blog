@@ -6,8 +6,10 @@ import { Button, Input, Modal, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
+import updateActicle from '@/apis/article/updateActicle';
+import createArticle from '@/apis/article/createArticle';
+import getArticleById from '@/apis/article/getArticleById';
 import { FileSyncOutlined, PlusOutlined } from '@/utils/icons';
-import axios from '@/utils/request';
 import { translateMarkdown } from '@/utils';
 import useBreadcrumb from '@/hooks/useBreadcrumb';
 import List from './Tag';
@@ -49,7 +51,7 @@ const Edit = () => {
   }, [store.tagList, store.categoryList]);
 
   const fetchArticle = (id) => {
-    axios.get(`/article/${id}?type=0`).then((res) => {
+    getArticleById(id, 0).then((res) => {
       setTitle(res.title);
       setContent(res.content);
       const tags = res.tags.map((d) => d.name);
@@ -71,33 +73,29 @@ const Edit = () => {
   // eslint-disable-next-line consistent-return
   const add = () => {
     if (!title) return message.warning('标题不能为空!');
-    axios
-      .post('/article', {
-        title,
-        content,
-        tagList: tagSelectedList,
-        categoryList: cateSelectedList,
-        authorId: store.authorId,
-      })
-      .then((res) => {
-        Modal.confirm({
-          title: '文章创建成功! 是否立即查看?',
-          onOk: () => navigate(`/article/${res.id}`),
-        });
+    createArticle({
+      title,
+      content,
+      tagList: tagSelectedList,
+      categoryList: cateSelectedList,
+      authorId: store.authorId,
+    }).then((res) => {
+      Modal.confirm({
+        title: '文章创建成功! 是否立即查看?',
+        onOk: () => navigate(`/article/${res.id}`),
       });
+    });
   };
 
   const update = () => {
-    axios
-      .put(`/article/${editId}`, {
-        title,
-        content,
-        tags: tagSelectedList,
-        categories: cateSelectedList,
-      })
-      .then(() => {
-        message.success('更新成功');
-      });
+    updateActicle({
+      title,
+      content,
+      tags: tagSelectedList,
+      categories: cateSelectedList,
+    }).then(() => {
+      message.success('更新成功');
+    });
   };
 
   return (

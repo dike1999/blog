@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
@@ -12,7 +15,8 @@ import {
   Select,
 } from 'antd';
 
-import axios from '@/utils/request';
+import putUserAuthority from '@/apis/user/putUserAuthority';
+import deleteUserById from '@/apis/user/deleteUserById';
 import dayjs from '@/utils/dayjs';
 import DatePicker from '@/components/DatePicker/index';
 import useAntdTable from '@/hooks/useAntdTable';
@@ -40,7 +44,8 @@ const AdminUser = () => {
         render: (text, record) => (
           <Switch
             defaultChecked={text}
-            onChange={(checked) => updateList(() => axios.put(`/user/${record.id}`, { notice: checked }))}
+            onChange={(checked) =>
+              updateList(() => putUserAuthority(record.id, { notice: checked }))}
           />
         ),
       },
@@ -50,18 +55,21 @@ const AdminUser = () => {
         render: (text, record) => (
           <Switch
             defaultChecked={text}
-            onChange={(checked) => updateList(() => axios.put(`/user/${record.id}`, { disabledDiscuss: checked }))}
+            onChange={(checked) =>
+              updateList(() =>
+                putUserAuthority(record.id, { disabledDiscuss: checked }))}
           />
         ),
       },
       {
         title: '用户类型',
         dataIndex: 'type',
-        render: (text, record) => (record.github ? (
-          <Tag color='#1890ff'>github 用户</Tag>
-        ) : (
-          <Tag color='magenta'>站内用户</Tag>
-        )),
+        render: (text, record) =>
+          record.github ? (
+            <Tag color='#1890ff'>github 用户</Tag>
+          ) : (
+            <Tag color='magenta'>站内用户</Tag>
+          ),
       },
       {
         title: '注册时间',
@@ -74,7 +82,7 @@ const AdminUser = () => {
         render: (userId) => (
           <Popconfirm
             title='Are you sure?'
-            onConfirm={() => updateList(() => axios.delete(`/user/${userId}`))}
+            onConfirm={() => updateList(() => deleteUserById(userId))}
           >
             <a className={styles.deleteText}>Delete</a>
           </Popconfirm>

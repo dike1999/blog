@@ -1,6 +1,9 @@
 import request from '@/utils/request';
 
-export default (id) => {
-  const url = `/article/${id}`;
+export default (id, type) => {
+  let url = `/article/${id}`;
+  if (type) {
+    url += `?type=${type}`;
+  }
   return request.get(url);
 };
