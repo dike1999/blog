@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
-export default (id, type) => {
-  let url = `/article/${id}`;
+export default ({ articleId, type }) => {
+  let url = `/article/${articleId}`;
   if (type) {
     url += `?type=${type}`;
   }

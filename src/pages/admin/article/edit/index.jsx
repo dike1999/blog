@@ -51,7 +51,7 @@ const Edit = () => {
   }, [store.tagList, store.categoryList]);
 
   const fetchArticle = (id) => {
-    getArticleById(id, 0).then((res) => {
+    getArticleById({ articleId: id, type: 0 }).then((res) => {
       setTitle(res.title);
       setContent(res.content);
       const tags = res.tags.map((d) => d.name);

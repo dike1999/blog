@@ -14,7 +14,7 @@ const About = () => {
 
   useEffect(() => {
     const fetchList = () => {
-      getArticleById(-1).then((article) => {
+      getArticleById({ articleId: -1 }).then((article) => {
         setCommentList(article.comments);
       });
     };

@@ -51,7 +51,7 @@ const Article = () => {
   }, []);
 
   useEffect(() => {
-    withLoading(getArticleById(params.id))
+    withLoading(getArticleById({ articleId: params.id }))
       .then((res) => {
         res.content = translateMarkdown(res.content);
         setArticle(res);
