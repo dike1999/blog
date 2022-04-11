@@ -7,7 +7,7 @@ import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
 import { FileSyncOutlined, PlusOutlined } from '@/utils/icons';
-import axios from '@/utils/axios';
+import axios from '@/utils/request';
 import { translateMarkdown } from '@/utils';
 import useBreadcrumb from '@/hooks/useBreadcrumb';
 import List from './Tag';

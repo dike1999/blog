@@ -15,7 +15,7 @@ import {
   EyeOutlined,
   CommentOutlined,
 } from '@/utils/icons';
-import axios from '@/utils/axios';
+import getArticleById from '@/apis/article/getArticleById';
 import { translateMarkdown, calcCommentsCount } from '@/utils';
 import useAjaxLoading from '@/hooks/useAjaxLoading';
 import ArticleTag from '@/components/ArticleTag';
@@ -51,7 +51,7 @@ const Article = () => {
   }, []);
 
   useEffect(() => {
-    withLoading(axios.get(`/article/${params.id}`))
+    withLoading(getArticleById(params.id))
       .then((res) => {
         res.content = translateMarkdown(res.content);
         setArticle(res);

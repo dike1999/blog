@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import axios from '@/utils/axios';
+import request from '@/utils/request';
 import useMount from './useMount';
 
 /**
@@ -31,7 +31,7 @@ export default function useAntdTable({
       ...params,
     };
 
-    axios
+    request
       .get(requestUrl, { params: requestParams })
       .then((response) => {
         const { page, pageSize } = requestParams;
@@ -108,7 +108,7 @@ export default function useAntdTable({
       onChange: handleTableChange,
     },
     dataList,
-    updateList: useCallback(updateList, [tablePagination, queryParams]), // 进行 action 操作 比如删除修改数据后获取数据 @example updateList(() => { return axios.put('xxxx') })
+    updateList: useCallback(updateList, [tablePagination, queryParams]), // 进行 action 操作 比如删除修改数据后获取数据 @example updateList(() => { return request.put('xxxx') })
     onSearch: useCallback(onSearch, [tablePagination, queryParams]),
     setLoading: useCallback(setLoading, []),
   };

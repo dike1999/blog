@@ -10,7 +10,8 @@ import {
 } from 'antd';
 
 import { DeleteOutlined } from '@/utils/icons';
-import axios from '@/utils/axios';
+import postDiscuss from '@/apis/discuss/postDiscuss';
+import deleteDiscuss from '@/apis/discuss/deleteDiscuss';
 import { translateMarkdown } from '@/utils';
 import dayjs from '@/utils/dayjs';
 import AppAvatar from '@/components/Avatar';
@@ -42,17 +43,15 @@ const CommentItem = ({
 
   const onSubmit = () => {
     if (!userInfo.userId) return message.warn('您未登陆，请登录后再试。');
-    axios
-      .post('/discuss', {
-        userId: userInfo.userId,
-        articleId,
-        content: value.trim(),
-        commentId,
-      })
-      .then((res) => {
-        onReply({ commentId: 0, replyId: 0 });
-        setCommentList(res.rows);
-      });
+    postDiscuss({
+      userId: userInfo.userId,
+      articleId,
+      content: value.trim(),
+      commentId,
+    }).then((res) => {
+      onReply({ commentId: 0, replyId: 0 });
+      setCommentList(res.rows);
+    });
   };
 
   const handleKeyUp = (e) => {
@@ -64,7 +63,7 @@ const CommentItem = ({
   // delete discuss
   const onDelete = () => {
     if (replyId) {
-      axios.delete(`/discuss/reply/${replyId}`).then(() => {
+      deleteDiscuss(`/discuss/reply/${replyId}`).then(() => {
         const commentListBackup = [...commentList];
         const tagetComment = commentListBackup.find((c) => c.id === commentId);
         tagetComment.replies = tagetComment.replies.filter(
@@ -73,7 +72,7 @@ const CommentItem = ({
         setCommentList(commentListBackup);
       });
     } else {
-      axios.delete(`/discuss/comment/${commentId}`).then(() => {
+      deleteDiscuss(`/discuss/comment/${commentId}`).then(() => {
         let commentListBackup = [...commentList];
         commentListBackup = commentListBackup.filter((c) => c.id !== commentId);
         setCommentList(commentListBackup);

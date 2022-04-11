@@ -12,7 +12,7 @@ import {
   Select,
 } from 'antd';
 
-import axios from '@/utils/axios';
+import axios from '@/utils/request';
 import dayjs from '@/utils/dayjs';
 import DatePicker from '@/components/DatePicker/index';
 import useAntdTable from '@/hooks/useAntdTable';

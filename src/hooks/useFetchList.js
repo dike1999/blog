@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import axios from '@/utils/axios';
+import request from '@/utils/request';
 import { decodeQuery } from '@/utils';
 import useMount from './useMount';
 
@@ -39,7 +39,7 @@ const useFetchList = ({
 
     requestParams.page = parseInt(requestParams.page, 10);
     requestParams.pageSize = parseInt(requestParams.pageSize, 10);
-    axios
+    request
       .get(requestUrl, { params: requestParams })
       .then((response) => {
         pagination.total = response.count;

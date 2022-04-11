@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Avatar } from 'antd';
 
 import { SIDEBAR, ABOUT } from '@/config';
-import axios from '@/utils/axios';
+import getArticleById from '@/apis/article/getArticleById';
 import Discuss from '@/components/Discuss';
 import Head from '@/components/Head';
 import Footer from '@/components/Footer';
@@ -14,7 +14,7 @@ const About = () => {
 
   useEffect(() => {
     const fetchList = () => {
-      axios.get('/article/-1').then((article) => {
+      getArticleById(-1).then((article) => {
         setCommentList(article.comments);
       });
     };

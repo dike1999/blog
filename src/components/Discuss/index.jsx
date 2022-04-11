@@ -15,7 +15,7 @@ import {
 } from 'antd';
 
 import { GithubFilled, DownOutlined, InfoCircleOutlined } from '@/utils/icons';
-import axios from '@/utils/axios';
+import postDiscuss from '@/apis/discuss/postDiscuss';
 import { calcCommentsCount } from '@/utils';
 import { loginout } from '@/redux/user/actions';
 import useAjaxLoading from '@/hooks/useAjaxLoading';
@@ -91,7 +91,7 @@ const Discuss = ({ setCommentList, articleId, commentList }) => {
     }
 
     withLoading(
-      axios.post('/discuss', {
+      postDiscuss({
         articleId,
         content: value,
         userId: userInfo.userId,

@@ -1,16 +1,20 @@
+/* eslint-disable implicit-arrow-linebreak */
 import * as TYPES from '@/redux/types';
-import axios from '@/utils/axios';
+import getTagListAPI from '@/apis/tag/getTagList';
+import getCategoryListAPI from '@/apis/category/getCategoryList';
 
-export const getTagList = () => (dispatch) => axios.get('/tag/list').then((list) => {
-  dispatch({
-    type: TYPES.ARTICLE_GET_TAG_LIST,
-    payload: list,
+export const getTagList = () => (dispatch) =>
+  getTagListAPI().then((list) => {
+    dispatch({
+      type: TYPES.ARTICLE_GET_TAG_LIST,
+      payload: list,
+    });
   });
-});
 
-export const getCategoryList = () => (dispatch) => axios.get('/category/list').then((list) => {
-  dispatch({
-    type: TYPES.ARTICLE_GET_CATEGORY_LIST,
-    payload: list,
+export const getCategoryList = () => (dispatch) =>
+  getCategoryListAPI().then((list) => {
+    dispatch({
+      type: TYPES.ARTICLE_GET_CATEGORY_LIST,
+      payload: list,
+    });
   });
-});

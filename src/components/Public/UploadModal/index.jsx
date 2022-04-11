@@ -12,7 +12,8 @@ import {
 import { API_BASE_URL } from '@/config';
 import { InboxOutlined } from '@/utils/icons';
 import { getToken } from '@/utils';
-import axios from '@/utils/axios';
+import postArticleCheckExist from '@/apis/article/postArticleCheckExist';
+import uploadArticle from '@/apis/article/uploadArticle';
 import { useListener } from '@/hooks/useBus';
 import useBoolean from '@/hooks/useBoolean';
 import styles from './index.module.less';
@@ -79,7 +80,7 @@ const UploadModal = () => {
       clearTimeout(timer.current);
       timer.current = setTimeout(() => {
         const fileNameList = fileList.map((item) => item.name);
-        axios.post('/article/checkExist', { fileNameList }).then((list) => {
+        postArticleCheckExist({ fileNameList }).then((list) => {
           setParsedList(list);
         });
       }, 500);
@@ -96,8 +97,7 @@ const UploadModal = () => {
       return list;
     }, []);
     confirmLoading.setTrue();
-    axios
-      .post('/article/upload/confirm', { authorId, uploadList })
+    uploadArticle({ authorId, uploadList })
       .then((response) => {
         confirmLoading.setFalse();
         setFalse();

@@ -16,7 +16,8 @@ import {
   Select,
 } from 'antd';
 
-import axios from '@/utils/axios';
+import deleteArticleById from '@/apis/article/deleteArticleById';
+import deleteArticleList from '@/apis/article/deleteArticleList';
 import dayjs from '@/utils/dayjs';
 import download from '@/utils/download';
 import useAntdTable from '@/hooks/useAntdTable';
@@ -110,7 +111,7 @@ const ArticleManager = () => {
               <Popconfirm
                 title='Are you sure?'
                 cancelText='No'
-                onConfirm={() => updateList(() => axios.delete(`/article/${articleId}`))}
+                onConfirm={() => updateList(() => deleteArticleById(articleId))}
               >
                 <a className={styles.deleteText}>删除</a>
               </Popconfirm>
@@ -130,7 +131,7 @@ const ArticleManager = () => {
   };
 
   const delList = () => {
-    axios.delete(`/article/list/${selectedRowKeys}`).then(() => {
+    deleteArticleList(selectedRowKeys).then(() => {
       onSearch();
       setSelectedRowKeys([]);
     });
