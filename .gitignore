@@ -8,3 +8,4 @@ dist-ssr
 .idea
 *.local
 size-plugin.json
+*/ssl

@@ -6,7 +6,7 @@ import WeChatImg from '@/assets/images/WeChat.png';
 import QQImg from '@/assets/images/QQ.png';
 
 // API_BASE_URL
-export const API_BASE_URL = 'http://coderdi.top:6060';
+export const API_BASE_URL = 'https://coderdi.top:6060';
 
 // 博客上线时间
 export const ONLINE_TIME = '2021-04-30';

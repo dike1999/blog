@@ -7,8 +7,17 @@ const cors = require('koa2-cors');
 const error = require('koa-json-error');
 const logger = require('koa-logger');
 const console = require('console');
+const fs = require('fs');
+const https = require('https');
+const sslify = require('koa-sslify').default;
 
 const app = new Koa();
+
+// 配置ssl
+const options = {
+  key: fs.readFileSync('./ssl/coderdi.top.key'),
+  cert: fs.readFileSync('./ssl/coderdi.top.pem'),
+};
 
 // context binding...
 const context = require('./utils/context');
@@ -21,6 +30,7 @@ Object.keys(context).forEach((key) => {
 const authHandler = require('./middlewares/authHandler');
 
 app
+  .use(sslify())
   .use(cors())
   .use(
     koaBody({
@@ -49,14 +59,14 @@ loadRouter(app);
 const { PORT } = require('./config');
 const db = require('./models');
 
-app.listen(PORT, () => {
+https.createServer(options, app.callback()).listen(PORT, () => {
   db.sequelize
     .sync({ force: false })
     .then(async () => {
       const initData = require('./initData');
       initData(); // 创建初始化数据
       console.log('sequelize connect success');
-      console.log(`server listen on http://127.0.0.1:${PORT}`);
+      console.log(`server listen on https://127.0.0.1:${PORT}`);
     })
     .catch((err) => {
       console.log(err);
