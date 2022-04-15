@@ -88,7 +88,7 @@ const Edit = () => {
   };
 
   const update = () => {
-    updateActicle({
+    updateActicle(editId, {
       title,
       content,
       tags: tagSelectedList,
