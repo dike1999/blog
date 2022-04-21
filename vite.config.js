@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import styleImport, { AntdResolve } from 'vite-plugin-style-import';
+import { AntdResolve, createStyleImportPlugin } from 'vite-plugin-style-import';
 import viteImagemin from 'vite-plugin-imagemin';
 import size from 'rollup-plugin-size';
 import sizes from 'rollup-plugin-sizes';
@@ -12,7 +12,7 @@ import { uglify } from 'rollup-plugin-uglify';
 export default defineConfig({
   plugins: [
     react(),
-    styleImport({
+    createStyleImportPlugin({
       resolves: [AntdResolve()],
       libs: [
         {
@@ -65,6 +65,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  server: {
+    host: true,
+    https: true,
+  },
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -73,13 +77,6 @@ export default defineConfig({
         chunkFileNames: 'js/[name]-[format].js',
         entryFileNames: 'js/[name].js',
         assetFileNames: 'assets/[ext]/[name][extname]',
-      },
-    },
-    terserOptions: {
-      compress: {
-        // 生产环境时移除console
-        drop_console: true,
-        drop_debugger: true,
       },
     },
   },

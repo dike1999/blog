@@ -38,7 +38,7 @@ const UserInfo = () => {
     <div style={{ float: 'right', padding: '0 40px 0 16px' }}>
       {username ? (
         <Dropdown
-          placement='bottomCenter'
+          placement='bottom'
           overlay={MenuOverLay}
           trigger={['click', 'hover']}
         >

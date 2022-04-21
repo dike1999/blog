@@ -46,9 +46,9 @@ const MyInfo = () => (
         <MailFilled style={{ marginRight: 5 }} />
         <a href='mailto:1138832931@qq.com'>1138832931@qq.com</a>
       </li>
-      <li>坐标: 成都市</li>
+      <li>坐标: 北京市</li>
       <li>
-        其他链接:
+        其他链接:&nbsp;&nbsp;
         <Href href='https://github.com/dike1999' extra={<span>GitHub</span>} />
       </li>
       <li>
