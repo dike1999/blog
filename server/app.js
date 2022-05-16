@@ -1,6 +1,7 @@
 /* eslint-disable no-confusing-arrow */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable global-require */
+const Egg = require('egg');
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const cors = require('koa2-cors');
