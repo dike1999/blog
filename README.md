@@ -11,7 +11,7 @@
 
 - 安装项目运行所需依赖
 
-### 启动React项目 `yarn start`
+### 启动 React 项目 `yarn start`
 
 - 在开发模式下运行应用程序
 - 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
@@ -25,10 +25,10 @@
 ## 项目使用说明
 
 - 源码: [https://github.com/dike1999/blog](https://github.com/dike1999/blog)
-- 博客前台(访客): [http://101.201.140.172/](http://101.201.140.172/) React+Antd vite2+rollup.js自定义打包构建
-- 管理后台: [http://101.201.140.172/admin](http://101.201.140.172/admin) 需权限认证
-- 服务端: [http://101.201.140.172:6060/](http://101.201.140.172:6060/) Nginx反向代理+Pm2-Node
-- 静态资源服务器:[http://101.201.140.172:7878/](http://101.201.140.172:7878/) 结合&图片上传云服务器-以前的项目
+- 博客前台(访客): [https://blog.coderdi.top/](https://blog.coderdi.top/) React+Antd vite2+rollup.js 自定义打包构建
+- 管理后台: [https://blog.coderdi.top/admin](https://blog.coderdi.top/admin) 需权限认证
+- 服务端: [https://coderdi.top:6060/](https://coderdi.top:6060/) Nginx 反向代理+Pm2-Node
+- 静态资源服务器:[https://coderdi.top:7878/](https://coderdi.top:7878/) 结合&图片上传云服务器-以前的项目
 
 - PC 端界面
   ![PC界面](./src/assets/images/Snipaste_PC.png)
@@ -42,20 +42,20 @@
 ### 性能优化
 
 - SEO
-- gzip压缩，强缓存，协商缓存
+- gzip 压缩，强缓存，协商缓存
 - 自定义配置打包优化 4.3MB→2.4MB，
-- 代码分割，按需加载，CI/CD自动构建
+- 代码分割，按需加载，CI/CD 自动构建
 - 设备适配 响应式布局 前端代码埋点
-- 前端性能优化方案 遵循雅虎军规35条
+- 前端性能优化方案 遵循雅虎军规 35 条
 
 ### 体积优化
 
-#### ⚡构建时压缩图片
+#### ⚡ 构建时压缩图片
 
 - 每次使用在线服务手动压缩较为麻烦，可以直接在构建流程中加入压缩图片
 - vite-plugin-imagemin 一个压缩图片资产的 vite 插件
 
-``` javascript
+```javascript
 import viteImagemin from 'vite-plugin-imagemin';
 
 export default () => {
@@ -94,18 +94,18 @@ export default () => {
 ```
 
 - 图片压缩效果展示
-![图片压缩效果](./src/assets/images/imagemin.png)
+  ![图片压缩效果](./src/assets/images/imagemin.png)
 
 ### 传输优化
 
-#### ⚡Gzip压缩传输
+#### ⚡Gzip 压缩传输
 
-- Gzip压缩是一种强力压缩手段，针对文本文件时通常能减少2/3的体积。
-- HTTP协议中用头部字段 **Accept-Encoding** 和 **Content-Encoding** 对「采用何种编码格式传输正文」进行了协定，请求头的 **Accept-Encoding** 会列出客户端支持的编码格式。当响应头的  **Content-Encoding** 指定了gzip时，浏览器则会进行对应解压
-- 一般浏览器都支持gzip，所以 **Accept-Encoding** 也会自动带上 **gzip** ，所以我们需要让资源服务器在 **Content-Encoding** 指定 gzip，并返回gzip文件
-- Nginx配置Gzip
+- Gzip 压缩是一种强力压缩手段，针对文本文件时通常能减少 2/3 的体积。
+- HTTP 协议中用头部字段 **Accept-Encoding** 和 **Content-Encoding** 对「采用何种编码格式传输正文」进行了协定，请求头的 **Accept-Encoding** 会列出客户端支持的编码格式。当响应头的 **Content-Encoding** 指定了 gzip 时，浏览器则会进行对应解压
+- 一般浏览器都支持 gzip，所以 **Accept-Encoding** 也会自动带上 **gzip** ，所以我们需要让资源服务器在 **Content-Encoding** 指定 gzip，并返回 gzip 文件
+- Nginx 配置 Gzip
 
-``` shell
+```shell
 #开启和关闭gzip模式
 gzip on;
 #gizp压缩起点，文件大于1k才进行压缩
@@ -125,16 +125,16 @@ gzip_http_version 1.1;
 ### TODO
 
 - 定制暗黑主题+开屏动画
-- 点赞功能(根据IP、访客点赞)
-- 服务器端渲染SSR
+- 点赞功能(根据 IP、访客点赞)
+- 服务器端渲染 SSR
 
-### 关于prettier
+### 关于 prettier
 
-- 因为prettier的一些设置规则可能和eslint冲突
-- 所以去掉了在提交阶段使用prettier格式化代码
-- 都使用eslint来自动格式化代码
+- 因为 prettier 的一些设置规则可能和 eslint 冲突
+- 所以去掉了在提交阶段使用 prettier 格式化代码
+- 都使用 eslint 来自动格式化代码
 
-### 规范git commit message
+### 规范 git commit message
 
 - 安装`commitlint`
 
@@ -142,7 +142,7 @@ gzip_http_version 1.1;
 yarn add @commitlint/cli @commitlint/config-conventional --dev
 ```
 
-- 在`package.json`文件中添加commitlint配置
+- 在`package.json`文件中添加 commitlint 配置
 
 ```json
 "commitlint": {
@@ -152,13 +152,13 @@ yarn add @commitlint/cli @commitlint/config-conventional --dev
 }
 ```
 
-- 添加Git Hooks。Git Commit 消息规则请参考: [CommitLint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional)
+- 添加 Git Hooks。Git Commit 消息规则请参考: [CommitLint](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional)
 
 ```shell
 npx husky add configs/husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
 
-- 提交一个commit示例
+- 提交一个 commit 示例
 
 ```shell
 git commit -m "fix: 处理了某个BUG"
