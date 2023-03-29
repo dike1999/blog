@@ -12,8 +12,7 @@ import {
 import { API_BASE_URL } from '@/config';
 import { InboxOutlined } from '@/utils/icons';
 import { getToken } from '@/utils';
-import postArticleCheckExist from '@/apis/article/postArticleCheckExist';
-import uploadArticle from '@/apis/article/uploadArticle';
+import { postArticleCheckExist, uploadArticle } from '@/apis/article';
 import { useListener } from '@/hooks/useBus';
 import useBoolean from '@/hooks/useBoolean';
 import styles from './index.module.less';

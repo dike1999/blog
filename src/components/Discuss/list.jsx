@@ -10,8 +10,7 @@ import {
 } from 'antd';
 
 import { DeleteOutlined } from '@/utils/icons';
-import postDiscuss from '@/apis/discuss/postDiscuss';
-import deleteDiscuss from '@/apis/discuss/deleteDiscuss';
+import { postDiscuss, deleteDiscuss } from '@/apis/discuss';
 import { translateMarkdown } from '@/utils';
 import dayjs from '@/utils/dayjs';
 import AppAvatar from '@/components/Avatar';

@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Popover, Button, Image } from 'antd';
 
-const Href = ({
-  extra, href, isImg = false, ...restProps
-}) => {
+const Href = ({ extra, href, isImg = false, ...restProps }) => {
   const isExternal = (path) => /^(https?:|mailto:|tel:|http:)/.test(path);
 
   let url = href;
@@ -15,7 +13,7 @@ const Href = ({
   return isImg ? (
     <Popover
       placement='right'
-      title={(
+      title={
         <div
           style={{
             display: 'flex',
@@ -25,7 +23,7 @@ const Href = ({
         >
           <h3 style={{ marginBottom: 0 }}>{extra}</h3>
         </div>
-      )}
+      }
       content={<Image width={150} src={href} />}
       trigger='hover'
       color='#cccccc'

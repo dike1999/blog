@@ -6,9 +6,7 @@ import { Button, Input, Modal, message } from 'antd';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 
-import updateActicle from '@/apis/article/updateActicle';
-import createArticle from '@/apis/article/createArticle';
-import getArticleById from '@/apis/article/getArticleById';
+import { updateActicle, createArticle, getArticleById } from '@/apis/article';
 import { FileSyncOutlined, PlusOutlined } from '@/utils/icons';
 import { translateMarkdown } from '@/utils';
 import useBreadcrumb from '@/hooks/useBreadcrumb';

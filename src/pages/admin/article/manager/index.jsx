@@ -16,8 +16,7 @@ import {
   Select,
 } from 'antd';
 
-import deleteArticleById from '@/apis/article/deleteArticleById';
-import deleteArticleList from '@/apis/article/deleteArticleList';
+import { deleteArticleList, deleteArticleById } from '@/apis/article';
 import dayjs from '@/utils/dayjs';
 import download from '@/utils/download';
 import useAntdTable from '@/hooks/useAntdTable';

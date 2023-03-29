@@ -15,8 +15,7 @@ import {
   Select,
 } from 'antd';
 
-import putUserAuthority from '@/apis/user/putUserAuthority';
-import deleteUserById from '@/apis/user/deleteUserById';
+import { deleteUserById, putUserAuthority } from '@/apis/user';
 import dayjs from '@/utils/dayjs';
 import DatePicker from '@/components/DatePicker/index';
 import useAntdTable from '@/hooks/useAntdTable';

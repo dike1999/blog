@@ -15,7 +15,7 @@ import {
   EyeOutlined,
   CommentOutlined,
 } from '@/utils/icons';
-import getArticleById from '@/apis/article/getArticleById';
+import { getArticleById } from '@/apis/article';
 import { translateMarkdown, calcCommentsCount } from '@/utils';
 import useAjaxLoading from '@/hooks/useAjaxLoading';
 import ArticleTag from '@/components/ArticleTag';

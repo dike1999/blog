@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Avatar } from 'antd';
 
 import { SIDEBAR, ABOUT } from '@/config';
-import getArticleById from '@/apis/article/getArticleById';
+import { getArticleById } from '@/apis/article';
 import Discuss from '@/components/Discuss';
 import Head from '@/components/Head';
 import Footer from '@/components/Footer';

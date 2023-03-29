@@ -1,6 +1,8 @@
 import request from '@/utils/request';
 
-export default (params) => {
+function getTagList(params) {
   const url = '/tag/list';
   return request.get(url, { params });
-};
+}
+
+export default { getTagList };

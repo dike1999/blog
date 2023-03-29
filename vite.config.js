@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -71,12 +72,22 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    emptyOutDir: true,
+    assetsDir: 'static',
     rollupOptions: {
       plugins: [uglify(), size(), sizes()],
       output: {
-        chunkFileNames: 'js/[name]-[format].js',
-        entryFileNames: 'js/[name].js',
-        assetFileNames: 'assets/[ext]/[name][extname]',
+        chunkFileNames: 'static/js/[name].js',
+        entryFileNames: 'static/js/[name].js',
+        assetFileNames: 'static/assets/[ext]/[name][extname]',
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'; // 代码分割为第三方包
+          }
+          if (id.includes('src')) {
+            return 'blog'; // 代码分割为业务视图
+          }
+        },
       },
     },
   },

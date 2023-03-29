@@ -15,7 +15,7 @@ import {
 } from 'antd';
 
 import { GithubFilled, DownOutlined, InfoCircleOutlined } from '@/utils/icons';
-import postDiscuss from '@/apis/discuss/postDiscuss';
+import { postDiscuss } from '@/apis/discuss';
 import { calcCommentsCount } from '@/utils';
 import { loginout } from '@/redux/user/actions';
 import useAjaxLoading from '@/hooks/useAjaxLoading';

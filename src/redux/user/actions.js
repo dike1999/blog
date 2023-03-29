@@ -1,8 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { message } from 'antd';
 import * as TYPES from '@/redux/types';
-import postLogin from '@/apis/user/postLogin';
-import postRegister from '@/apis/user/postRegister';
+import { postLogin, postRegister } from '@/apis/user';
 
 export const login = (params) => (dispatch) =>
   postLogin(params).then((res) => {
